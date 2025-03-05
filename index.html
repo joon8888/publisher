@@ -13,23 +13,145 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <title>문서 제목</title>
   <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- GSAP 라이브러리 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- ScrollTrigger 플러그인 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="./assets/js/app.js" defer></script>
 </head>
 <body>
   <div id="app">
-    <div class="pin-wrap">
-      <section class="pin-cont pin-cont-sec1">
-        <h2 class="pin-cont__tit">sub title</h2>
-        <div class="pin-cont__conts">contents</div>
-      </section>
-      <section class="pin-cont pin-cont-sec2">
-        <div class="h-scroll-wrap">
-          <div class="h-scroll__cont">h-scroll container 1</div>
-          <div class="h-scroll__cont">h-scroll container 2</div>
-          <div class="h-scroll__cont">h-scroll container 3</div>
+    <div class="smooth-wrap">
+        <div class="smooth-cont">
+          <section class="smooth-cont__section smooth-cont__section-1">
+            <h2 class="__tit">sub title1</h2>
+            <div class="__conts">contents</div>
+          </section>
+          <section class="smooth-cont__section smooth-cont__section-1">
+            <h2 class="__tit">sub title1</h2>
+            <div class="__conts">contents</div>
+          </section>
+          <section id="sectionPin">
+            <div class="pin-wrap">
+      
+              <div class="charity">Charity1</div>
+              <div class="charity">Charity2</div>
+              <div class="charity">Charity3</div>
+              <div class="charity">Charity4</div>
+              <div class="charity">Charity5</div>
+      
+            </div>
+          </section>
+          <section class="smooth-cont__section smooth-cont__section-1">
+            <h2 class="__tit">sub title1</h2>
+            <div class="__conts">contents</div>
+          </section>
+
+        </div>
+      </div> 
+    </div>
+    <!-- <div class="container">
+      <section id="sectionPin">
+        <div class="pin-wrap">
+  
+          <div class="charity">Charity</div>
+          <div class="charity">Charity</div>
+          <div class="charity">Charity</div>
+          <div class="charity">Charity</div>
+          <div class="charity">Charity</div>
+  
         </div>
       </section>
-    </div>
+    </div> -->
+    
   </div>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    ScrollTrigger.scrollerProxy("#sectionPin", {
+      getBoundingClientRect() {
+        return {
+          left: 0,
+          top: 0,
+          width: window.innerWidth,
+          height: window.innerHeight
+        };
+      },
+      pinType: 'fixed'
+      // pinType: document.querySelector("#sectionPin").style.transform
+      //   ? "transform"
+      //   : "fixed"
+    });
+
+    window.addEventListener("load", function () {
+      let pinBoxes = document.querySelectorAll(".pin-wrap > *");
+      let pinWrap = document.querySelector(".pin-wrap");
+      let pinWrapWidth = pinWrap.offsetWidth;
+      let horizontalScrollLength = pinWrapWidth - window.innerWidth;
+
+      // Pinning and horizontal scrolling
+
+      if (document.querySelector("#sectionPin")) {
+  const pinItems = document.querySelectorAll(".charity"),
+        pinContainer = document.querySelector(".pin-wrap");
+        console.log(pinContainer)
+  gsap.matchMedia().add("(min-width: 961px)", () => {
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: pinContainer,  // ✅ 가로 스크롤 트리거 변경
+        scrub: true,            // ✅ 스크롤 속도와 동기화
+        pin: true,              // ✅ 고정 (pinning)
+        pinSpacing: true,  // ✅ pinSpacing 활성화
+        end: () => `+=${pinContainer.offsetWidth}`,
+        onEnter: () => {  // ✅ 처음 `pin`이 활성화될 때 실행
+          let pinSpacer = document.querySelector(".pin-spacer");
+          pinSpacer.style.paddingBottom = `${pinContainer.offsetWidth}px`;
+          ScrollTrigger.refresh();
+        },
+        onUpdate: () => {
+          let pinWrap = document.querySelector(".pin-wrap");
+
+          // ✅ 마지막 스크롤 상태에서 pin-wrap이 원래 자리로 이동
+          if (ScrollTrigger.isInViewport(pinContainer, 1)) {
+            pinWrap.style.transform = `translateY(${pinContainer.offsetWidth}px)`;
+          } else {
+            pinWrap.style.transform = `translateY(0px)`;
+          }
+        }
+      }
+    })
+    .to(pinItems, {
+      duration: 4,                              // ✅ 전체 가로 스크롤 애니메이션 지속 시간
+      xPercent: -100 * (pinItems.length - 1),   // ✅ `.charity` 요소들을 왼쪽으로 이동
+      ease: "none"                              // ✅ 부드러운 움직임
+    })
+    .to("#sectionPin", {
+      duration: 1,
+      backgroundColor: "#0000F4",
+      ease: "none"
+    }, 0)
+    .to("#sectionPin", {
+      duration: 1,
+      backgroundColor: "#4FA778",
+      ease: "none"
+    }, 1)
+    .to("#sectionPin", {
+      duration: 1,
+      backgroundColor: "#E03122",
+      ease: "none"
+    }, 2)
+    .to("#sectionPin", {
+      duration: 1,
+      backgroundColor: "#050505",
+      ease: "none"
+    }, 3);
+  });
+}
+
+    });
+    
+
+  </script>
 </body>
 </html>

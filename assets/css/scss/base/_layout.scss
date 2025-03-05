@@ -5,10 +5,11 @@ body {
   overflow: auto;
   overscroll-behavior: none;
   scroll-behavior: auto;
-  scrollbar-width: 0;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  // scrollbar-width: 0;
+
+  // &::-webkit-scrollbar {
+  //   display: none;
+  // }
 
 }
 
@@ -20,25 +21,40 @@ body {
   overflow: hidden;
 }
 
-.pin {
-  &-wrap {
+.smooth {
+  &-cont {
     width: 100%;
     overflow: visible;
-
-    $pin-cont-max-count: 10; 
-    @for $i from 1 through $pin-cont-max-count {
-      .pin-cont:nth-child(#{$i}) {
-        z-index: #{$pin-cont-max-count + 1 - $i};
-      }
+    &__section {
+      position: relative;
+      width: 100%;
+      min-height: 100dvh;
+      overflow: hidden;
+      @include flex($jc:flex-start);
+      background-color: rgba(255, 255, 255, 1);
     }
   }
+}
 
-  &-cont {
-    position: relative;
-    width: 100%;
-    min-height: 100dvh;
-    overflow: hidden;
-    @include flex;
-    background-color: rgba(255, 255, 255, 1);
-  }
+.spacer {
+  height: 800px;
+}
+
+#sectionPin {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  left: 0;
+}
+
+.pin-wrap {
+  display: flex;
+}
+
+.charity {
+  width: 100vw;
+  height: 100vh;
+  background: royalblue;
+  display: flex;
+  flex-direction: column;
 }
