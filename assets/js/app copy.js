@@ -69,7 +69,6 @@ class SmoothScroll {
     this.scrub = 0.1; // GSAP scrub처럼 적용할 스크롤 보정 값
     this.stopPosition = 0; // 스크롤 멈출 위치
     this.horizontalActive = false;
-    this.bodyHeight = 0;
 
     if (!this.wrap || !this.cont || this.sections.length <= 0) return;
     this.init();
@@ -82,17 +81,17 @@ class SmoothScroll {
     this.update(); 
   }
   
-  updateScrollHeight (hScrollValue) {
+  updateScrollHeight () {
+    let totalHeight = 0;
     this.sections.forEach(section => {
-      this.bodyHeight += section.offsetHeight;
-      // if(section.classList.contains('smooth-cont__section--horizontal')) {
-      //   const hScrollCont = section.querySelector('.horizontal-cont');
-      //   totalHeight += hScrollCont.scrollWidth - window.innerWidth;
-      // } else {
-      //   this.bodyHeight += section.offsetHeight
-      // }
+      if(section.classList.contains('smooth-cont__section--horizontal')) {
+        const hScrollCont = section.querySelector('.horizontal-cont');
+        totalHeight += hScrollCont.scrollWidth - window.innerWidth;
+      } else {
+        totalHeight += section.offsetHeight
+      }
     });
-    document.body.style.height = `${this.bodyHeight}px`;
+    document.body.style.height = `${totalHeight}px`;
   }
 
   setupObserver() {
@@ -100,37 +99,27 @@ class SmoothScroll {
       (entries) => {
         entries.forEach((entry) => {
           const section = entry.target;
-          const rect = section.getBoundingClientRect();
-          const hScrollCont = section.querySelector('.horizontal-cont');
-
-          if (entry.isIntersecting && section.classList.contains('smooth-cont__section--horizontal')) {
-            console.log(`📌 [HORIZONTAL] 수평 스크롤 시작!`);
-            this.horizontalActive = true;
-            new HorizontalScroll();
+          // if (entry.isIntersecting) {
+          //   console.log(`✅ [IN] ${section.dataset.section}이 뷰포트 상단에 맞닿음!`);
+          //   this.lastIntersected = section.dataset.section;
+          // } else {
+          //   console.log(`❌ [OUT] ${section.dataset.section}이 뷰포트를 벗어남!`);
+          //   if(section.classList.contains('smooth-cont__section-1')){
+          //   this.isScrolling = false;
+          //   }
+          // }
+          if (!entry.isIntersecting && section.classList.contains('smooth-cont__section-1')) {
+            console.log(`❌ [OUT] 첫 번째 섹션 벗어남 → 스크롤 멈춤!`);
             this.stopPosition = section.offsetHeight;
             this.isScrolling = false;
             document.body.style.overflow = 'hidden';
             window.scrollTo(0, this.stopPosition);
             this.currentY = this.stopPosition;
-            if(hScrollCont) {
-              this.bodyHeight += hScrollCont.scrollWidth - window.innerWidth;
-              document.body.style.height = `${this.bodyHeight}px`;
-            }
           }
           if (entry.isIntersecting && section.classList.contains('smooth-cont__section--horizontal')) {
-            const translateX = parseFloat(getComputedStyle(hScrollCont).transform.split(',')[4]) || 0; // 🎯 현재 translateX 값 가져오기
-            const maxScrollX = -(hScrollCont.scrollWidth - hScrollCont.clientWidth); // 🎯 최대 이동값 (음수)
-          
-            console.log(`🔍 수평 스크롤 진행 중: translateX = ${translateX}, maxScrollX = ${maxScrollX}`);
-          
-            if (translateX <= maxScrollX * 0.98) { // 🎯 98% 이상 도달하면 세로 스크롤 전환
-              console.log(`🔄 [EXIT HORIZONTAL] 수평 스크롤 종료 → 다음 세로 스크롤 시작`);
-              this.horizontalActive = false;
-              this.isScrolling = true;
-              document.body.style.overflow = 'auto';
-              this.bodyHeight -= hScrollCont.scrollWidth - window.innerWidth;
-              document.body.style.height = `${this.bodyHeight}px`;
-            }
+            console.log(`📌 [HORIZONTAL] 수평 스크롤 시작!`);
+            this.horizontalActive = true;
+            new HorizontalScroll();
           }
         });
       },
@@ -200,8 +189,6 @@ class Ui {
   }
   init () {
     this.smoothScroll = new SmoothScroll();
-
-   
   }
 }
 
