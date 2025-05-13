@@ -1,64 +1,206 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="이 페이지에 대한 설명">
-  <meta name="keywords" content="웹, 개발, HTML">
-  <meta name="author" content="작성자 이름">
-  <meta property="og:title" content="페이지 제목">
-  <meta property="og:description" content="페이지 설명">
-  <meta property="og:image" content="이미지 URL">
-  <meta property="og:url" content="페이지 URL">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <title>문서 제목</title>
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <!-- GSAP 라이브러리 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="./assets/js/app.js" defer></script>
-</head>
-<body>
-  <div id="app">
-    <div class="smooth-wrap">
-        <div class="smooth-cont">
-          <section class="smooth-cont__section smooth-cont__section-1">
-            <div class="__tit">sub title</div>
-            <div class="__conts">contents</div>
-          </section>
-          <section class="smooth-cont__section smooth-cont__section--horizontal">
-            <div class="horizontal-wrap">
-              <div class="horizontal-cont">
-                <div class="horizontal-cont__section">
-                  <div class="__tit">sub title1</div>
-                  <div class="__conts">contents</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="이 페이지에 대한 설명" />
+    <meta name="keywords" content="웹, 개발, HTML" />
+    <meta name="author" content="작성자 이름" />
+    <meta property="og:title" content="페이지 제목" />
+    <meta property="og:description" content="페이지 설명" />
+    <meta property="og:image" content="이미지 URL" />
+    <meta property="og:url" content="페이지 URL" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <title>문서 제목</title>
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.1/dist/lenis.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- Lenis 스크립트 -->
+    <script src="https://unpkg.com/lenis@1.3.1/dist/lenis.min.js"></script>
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="./assets/js/app.js" defer></script>
+  </head>
+  <body>
+    <div id="app">
+      <main>
+        <section class="visual panel">
+          <div class="screen" id="fold-effect">
+            <div class="wrapper-3d">
+              <div class="fold fold-top">
+                <div class="fold-align">
+                  <div class="fold-content">
+                    <div class="marquee">
+                      <div class="track">YOUJOON.YOUJOON.YOUJOON.<span class="-focus">YOUJOON.</span>YOUJOON.YOUJOON.YOUJOON.YOUJOON.</div>
+                    </div>
+
+                    <div class="marquee">
+                      <div class="track">CHOI.CHOI.<span class="-focus">CHOI.</span>CHOI.CHOI.CHOI.CHOI.CHOI.CHOI.</div>
+                    </div>
+
+                    <div class="marquee">
+                      <div class="track">Interactive.Interactive.<span class="-focus">Interactive.</span>Interactive.Interactive.Interactive.Interactive.Interactive.</div>
+                    </div>
+
+                    <div class="marquee">
+                      <div class="track">Publisher.Publisher.<span class="-focus">Publisher.</span>Publisher.Publisher.Publisher.</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="horizontal-cont__section">
-                  <div class="__tit">sub title2</div>
-                  <div class="__conts">contents</div>
+              </div>
+              <div class="fold fold-center" id="center-fold">
+                <div class="fold-align">
+                  <div class="fold-content" id="center-content">
+                    <div class="marquee">
+                      <div class="track">YOUJOON.YOUJOON.YOUJOON.<span class="-focus">YOUJOON.</span>YOUJOON.YOUJOON.YOUJOON.YOUJOON.</div>
+                    </div>
+
+                    <div class="marquee">
+                      <div class="track">CHOI.CHOI.<span class="-focus">CHOI.</span>CHOI.CHOI.CHOI.CHOI.CHOI.CHOI.</div>
+                    </div>
+
+                    <div class="marquee">
+                      <div class="track">Interactive.Interactive.<span class="-focus">Interactive.</span>Interactive.Interactive.Interactive.Interactive.Interactive.</div>
+                    </div>
+
+                    <div class="marquee">
+                      <div class="track">Publisher.Publisher.<span class="-focus">Publisher.</span>Publisher.Publisher.Publisher.</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="horizontal-cont__section">
-                  <div class="__tit">sub title3</div>
-                  <div class="__conts">contents</div>
-                </div>
-                <div class="horizontal-cont__section">
-                  <div class="__tit">sub title4</div>
-                  <div class="__conts">contents</div>
+              </div>
+              <div class="fold fold-bottom">
+                <div class="fold-align">
+                  <div class="fold-content">
+                    <div class="marquee">
+                      <div class="track">YOUJOON.YOUJOON.YOUJOON.<span class="-focus">YOUJOON.</span>YOUJOON.YOUJOON.YOUJOON.YOUJOON.</div>
+                    </div>
+
+                    <div class="marquee">
+                      <div class="track">CHOI.CHOI.<span class="-focus">CHOI.</span>CHOI.CHOI.CHOI.CHOI.CHOI.CHOI.</div>
+                    </div>
+
+                    <div class="marquee">
+                      <div class="track">Interactive.Interactive.<span class="-focus">Interactive.</span>Interactive.Interactive.Interactive.Interactive.Interactive.</div>
+                    </div>
+
+                    <div class="marquee">
+                      <div class="track">Publisher.Publisher.<span class="-focus">Publisher.</span>Publisher.Publisher.Publisher.</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+        <section class="panel panel--info">
+          <div class="container">
+            <h1 class="text">MOTION<span>인터랙티브</span></h1>
+            <h1 class="text">
+              JAVASCRIPT<span><a href="">스크립트 모듈화</a></span>
+            </h1>
+            <h1 class="text">VUE3<span>기본 컴포넌트</span></h1>
+            <h1 class="text">SCSS<span>스타일 모듈화</span></h1>
+            <h1 class="text">
+              COMMUNICATION<span><a href="https://twitter.com/juxtopposed" target="_blank">소통</a></span>
+            </h1>
+          </div>
+        </section>
+        <section id="section_to-pin" class="grid-container full section section_to-pin four">
+          <div id="section_pin" class="section_pin">
+            <div class="content_wrapper">
+              <h1>WORKS.</h1>
+            </div>
+            <div id="image_wrapper_1" class="image_wrapper image_wrapper_1">
+              <img class="image" src="https://images.unsplash.com/photo-1516647768-31ff0cef8821?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=870&amp;q=80" alt="Lil' Image"/>
+            </div>
+            <div id="image_wrapper_2" class="image_wrapper image_wrapper_2">
+              <img class="image" src="https://images.unsplash.com/photo-1516648064-ee10acfa64db?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=863&amp;q=80" alt="Lil' Image"/>
+            </div>
+            <div id="image_wrapper_3" class="image_wrapper image_wrapper_3">
+              <img class="image" src="https://images.unsplash.com/photo-1516647072-a39e59e34b97?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=870&amp;q=80" alt="Lil' Image"/>
+            </div>
+          </div>
+        </section>
+      </main>
+      <!-- <div class="smooth-wrap">
+        <div class="smooth-cont">
+          <section class="smooth-cont__sec smooth-cont__sec--visual">
+            <div class="__obj __obj--txt">
+              <div class="__txt">
+                <span class="__origin">Y</span>
+                <span class="__shadow">Y</span>
+              </div>
+              <div class="__txt">
+                <span class="__origin">O</span>
+                <span class="__shadow">O</span>
+              </div>
+              <div class="__txt">
+                <span class="__origin">U</span>
+                <span class="__shadow">U</span>
+              </div>
+            </div>
+            <div class="__obj __obj--ball">
+              <div class="__ball"></div>
+            </div>
+            <div class="__obj __obj--lamp">
+              <div class="__lamp">
+                <img src="./assets/image/lamp_1.png" alt="lamp">
+              </div>
+            </div>
           </section>
-          <section class="smooth-cont__section">
-            <div class="__tit">sub title</div>
-            <div class="__conts">contents</div>
+          <section class="smooth-cont__sec smooth-cont__sec--project-filter">
+            <h2>Projects</h2>
+            <div class="btn-wrap">
+              <button>All</button>
+              <button>Development</button>
+              <button>Maintenance</button>
+            </div>
           </section>
-          <section class="smooth-cont__section">
-            <div class="__tit">sub title</div>
-            <div class="__conts">contents</div>
+          <section class="smooth-cont__sec smooth-cont__sec--project horizontal-wrap">
+            <div class="horizontal-cont">
+              <div class="horizontal-cont__sec horizontal-cont__sec--intro">
+                <div class="__inner">
+                  <h2 class="__tit">All</h2>
+                </div>
+              </div>
+              <div class="horizontal-cont__sec">
+                <h3 class="__tit">Samsung Welstory</h3>
+              </div>
+              <div class="horizontal-cont__sec">
+                <h3 class="__tit">IFC Mall</h3>
+              </div>
+            </div>
+          </section>
+          <section class="smooth-cont__sec">
+            <div>
+              <h2><span>This should be a light cream background</span></h2>
+            </div>
+          </section>
+  
+          <section class="smooth-cont__sec">
+            <img src="https://images.pexels.com/photos/4791474/pexels-photo-4791474.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
+            <h2>This should be a pink background</h2>
+          </section>
+          <section class="smooth-cont__sec horizontal-wrap">
+            <div class="horizontal-cont">
+              <h2>This whole horizontal section should be brown</h2>
+              <img src="https://images.pexels.com/photos/5207262/pexels-photo-5207262.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="" />
+              <img src="https://images.pexels.com/photos/3371358/pexels-photo-3371358.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="" />
+              <img src="https://images.pexels.com/photos/3618545/pexels-photo-3618545.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="" />
+            </div>
+          </section>
+          <section class="smooth-cont__sec">
+            <div>
+              <h2 ><span>This should be a light cream background</span></h2>
+            </div>
+          </section>
+          <section class="smooth-cont__sec">
+            <img src="https://images.pexels.com/photos/4791474/pexels-photo-4791474.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
+            <h2>This should be a pink background</h2>
           </section>
         </div>
-      </div> 
+      </div> -->
     </div>
-    
-</body>
+  </body>
 </html>

@@ -1,0 +1,154 @@
+@keyframes bounce-lamp {
+  0%   { transform: scale(1,1) translateY(0); }
+  
+  /* 첫 번째 점프 (높이 400px) */
+  10%  { transform: scale(1.1,.9) translateY(0); }
+  20%  { transform: scale(.9,1.1) translateY(-400px); }
+  30%  { transform: scale(1,1) translateY(0); }
+
+  /* 두 번째 점프 (높이 250px) */
+  40%  { transform: scale(.95,1.05) translateY(-250px); }
+  50%  { transform: scale(1,1) translateY(0); }
+
+  /* 세 번째 점프 (높이 100px) */
+  60%  { transform: scale(.98,1.02) translateY(-100px); }
+  70%  { transform: scale(1,1) translateY(0); }
+
+  /* 최종 정지 */
+  80%  { transform: scale(1.02,.98) translateY(0); }
+  100% { transform: scale(1,1) translateY(0); }
+}
+
+
+body {
+  transition: 0.3s ease-out;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+  overscroll-behavior: none;
+}
+
+.smooth {
+  &-cont {
+    &__sec {
+      min-height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      //left: 0;
+
+      &--visual {
+        background: #99ccff;
+        justify-content: center;
+        align-items: center;
+        .__obj {
+          display: flex;
+          align-items: flex-end;
+
+          &--txt {
+            .__txt {
+              position: relative;
+              font-size: 10rem;
+              font-weight: 700;
+  
+              .__origin {
+  
+              }
+              .__shadow {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                filter: blur(8px);
+                transform: skew(-69deg, 0) translate(148%, 20%) scaleY(0.3);
+                -webkit-mask-image: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.5) 100%);
+              }
+            }
+          }
+
+          &--ball {
+            .__ball {
+              display: block;
+              width: 20rem;
+              height: 20rem;
+              position: relative;
+              background: radial-gradient(circle at 30% 30%, #f6ffe8, #eeffbe);
+              border-radius: 50%;
+
+              &::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: 50%;
+                background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.4), transparent 60%),
+                            radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent 50%),
+                            radial-gradient(circle at 50% 90%, rgba(0, 0, 0, 0.3), transparent 70%);
+                mix-blend-mode: overlay;
+              }
+
+              // &::after {
+              //   content: "";
+              //   position: absolute;
+              //   width: 80%;
+              //   height: 10%;
+              //   left: 50%;
+              //   bottom: -20%;
+              //   transform: translateX(-50%) scaleY(1.5) skewX(-20deg);
+              //   border-radius: 50%;
+              //   background: radial-gradient(circle, rgba(0, 0, 0, 0.5) 20%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0) 100%);
+              //   filter: blur(13px); 
+              //   opacity: 0.6; 
+              //   mix-blend-mode: multiply; 
+              // }
+            }
+          }
+
+          &--lamp {
+            .__lamp{
+              animation: bounce-lamp 2s ease-out forwards;
+            }
+          }
+        }
+      }
+
+      &--project {
+        &-filter {
+          height: 10rem;
+          min-height: auto;
+          background: rgba(200,20,20,0.6);
+        }
+
+        .horizontal {
+          &-cont {
+            &__sec {
+              &--intro {
+                padding: 8rem 0 8rem 5rem;
+                .__inner {
+                  height: 100%;
+                  width: calc(100vh - 16rem);
+                  background: #99ccff;
+                  border-radius: 0% 0% 0% 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.horizontal {
+  &-cont {
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    &__sec {
+      width: 100vw;
+      height: inherit;
+      .__tit {
+        color:red;
+      }
+    }
+  }
+}
+
