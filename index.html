@@ -11,7 +11,7 @@
     <meta property="og:image" content="이미지 URL" />
     <meta property="og:url" content="페이지 URL" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <title>문서 제목</title>
+    <title>YOU JOin ON. | 최유준 포트폴리오</title>
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.1/dist/lenis.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <!-- Lenis 스크립트 -->
@@ -19,73 +19,90 @@
     <!-- GSAP + ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="./assets/js/app.js" defer></script>
+    <!-- <script src="./assets/js/app.js" defer></script> -->
   </head>
   <body>
     <div id="app">
+      <div class="intro">
+        <div class="text-wrap">
+          <!-- <p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100vw" height="100" viewBox="0 0 100 100">
+              <text x="0" y="60" text-anchor="middle" id="text" stroke="black" fill="white">YOU JOin ON.</text>
+            </svg>
+          </p> -->
+        </div>
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100vw" height="100" viewBox="0 0 100 100">
+            <text x="0" y="60" text-anchor="middle" id="text" stroke="black" fill="white">YOU JOin ON.</text>
+          </svg>
+        </p>
+        <div class="screenBlack">
+          <span class="tile"></span><span class="tile"></span><span class="tile"></span><span class="tile"></span><span class="tile"></span><span class="tile"></span>
+        </div>
+      </div>
       <main>
-        <section class="visual panel">
-          <div class="screen" id="fold-effect">
-            <div class="wrapper-3d">
-              <div class="fold fold-top">
-                <div class="fold-align">
-                  <div class="fold-content">
-                    <div class="marquee">
-                      <div class="track">YOUJOON.YOUJOON.YOUJOON.<span class="-focus">YOUJOON.</span>YOUJOON.YOUJOON.YOUJOON.YOUJOON.</div>
+        <section class="section section--visual">
+          <div class="fold-wrap">
+            <div class="inner--3d">
+              <div class="fold fold--top">
+                <div class="fold__align">
+                  <div class="fold__conts">
+                    <div class="fold__conts__item">
+                      <div class="track">YOUJOON.YOUJOON.<span class="focus">YOUJOON.</span>YOUJOON.YOUJOON.YOUJOON.YOUJOON.YOUJOON.</div>
                     </div>
 
-                    <div class="marquee">
-                      <div class="track">CHOI.CHOI.<span class="-focus">CHOI.</span>CHOI.CHOI.CHOI.CHOI.CHOI.CHOI.</div>
+                    <div class="fold__conts__item">
+                      <div class="track">CHOI.CHOI.CHOI.<span class="focus">CHOI.</span>CHOI.CHOI.CHOI.CHOI.</div>
                     </div>
 
-                    <div class="marquee">
-                      <div class="track">Interactive.Interactive.<span class="-focus">Interactive.</span>Interactive.Interactive.Interactive.Interactive.Interactive.</div>
+                    <div class="fold__conts__item">
+                      <div class="track">PUBLISHER.PUBLISHER.<span class="focus">PUBLISHER.</span>PUBLISHER.PUBLISHER.PUBLISHER.PUBLISHER.PUBLISHER.</div>
                     </div>
 
-                    <div class="marquee">
-                      <div class="track">Publisher.Publisher.<span class="-focus">Publisher.</span>Publisher.Publisher.Publisher.</div>
+                    <div class="fold__conts__item">
+                      <div class="track">4 Years of Exp.<span class="focus">4 Years of Exp.</span>4 Years of Exp.4 Years of Exp.4 Years of Exp4 Years of Exp4 Years of Exp4 Years of Exp</div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="fold fold-center" id="center-fold">
-                <div class="fold-align">
-                  <div class="fold-content" id="center-content">
-                    <div class="marquee">
-                      <div class="track">YOUJOON.YOUJOON.YOUJOON.<span class="-focus">YOUJOON.</span>YOUJOON.YOUJOON.YOUJOON.YOUJOON.</div>
+              <div class="fold fold--center">
+                <div class="fold__align">
+                  <div class="fold__conts">
+                    <div class="fold__conts__item">
+                      <div class="track">YOUJOON.YOUJOON.<span class="focus">YOUJOON.</span>YOUJOON.YOUJOON.YOUJOON.YOUJOON.YOUJOON.</div>
                     </div>
 
-                    <div class="marquee">
-                      <div class="track">CHOI.CHOI.<span class="-focus">CHOI.</span>CHOI.CHOI.CHOI.CHOI.CHOI.CHOI.</div>
+                    <div class="fold__conts__item">
+                      <div class="track">CHOI.CHOI.CHOI.<span class="focus">CHOI.</span>CHOI.CHOI.CHOI.CHOI.</div>
                     </div>
 
-                    <div class="marquee">
-                      <div class="track">Interactive.Interactive.<span class="-focus">Interactive.</span>Interactive.Interactive.Interactive.Interactive.Interactive.</div>
+                    <div class="fold__conts__item">
+                      <div class="track">PUBLISHER.PUBLISHER.<span class="focus">PUBLISHER.</span>PUBLISHER.PUBLISHER.PUBLISHER.PUBLISHER.PUBLISHER.</div>
                     </div>
 
-                    <div class="marquee">
-                      <div class="track">Publisher.Publisher.<span class="-focus">Publisher.</span>Publisher.Publisher.Publisher.</div>
+                    <div class="fold__conts__item">
+                      <div class="track">4 Years of Exp.<span class="focus">4 Years of Exp.</span>4 Years of Exp.4 Years of Exp.4 Years of Exp4 Years of Exp4 Years of Exp4 Years of Exp</div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="fold fold-bottom">
-                <div class="fold-align">
-                  <div class="fold-content">
-                    <div class="marquee">
-                      <div class="track">YOUJOON.YOUJOON.YOUJOON.<span class="-focus">YOUJOON.</span>YOUJOON.YOUJOON.YOUJOON.YOUJOON.</div>
+              <div class="fold fold--bottom">
+                <div class="fold__align">
+                  <div class="fold__conts">
+                    <div class="fold__conts__item">
+                      <div class="track">YOUJOON.YOUJOON.<span class="focus">YOUJOON.</span>YOUJOON.YOUJOON.YOUJOON.YOUJOON.YOUJOON.</div>
                     </div>
 
-                    <div class="marquee">
-                      <div class="track">CHOI.CHOI.<span class="-focus">CHOI.</span>CHOI.CHOI.CHOI.CHOI.CHOI.CHOI.</div>
+                    <div class="fold__conts__item">
+                      <div class="track">CHOI.CHOI.CHOI.<span class="focus">CHOI.</span>CHOI.CHOI.CHOI.CHOI.</div>
                     </div>
 
-                    <div class="marquee">
-                      <div class="track">Interactive.Interactive.<span class="-focus">Interactive.</span>Interactive.Interactive.Interactive.Interactive.Interactive.</div>
+                    <div class="fold__conts__item">
+                      <div class="track">PUBLISHER.PUBLISHER.<span class="focus">PUBLISHER.</span>PUBLISHER.PUBLISHER.PUBLISHER.PUBLISHER.PUBLISHER.</div>
                     </div>
 
-                    <div class="marquee">
-                      <div class="track">Publisher.Publisher.<span class="-focus">Publisher.</span>Publisher.Publisher.Publisher.</div>
+                    <div class="fold__conts__item">
+                      <div class="track">4 Years of Exp.<span class="focus">4 Years of Exp.</span>4 Years of Exp.4 Years of Exp.4 Years of Exp4 Years of Exp4 Years of Exp4 Years of Exp</div>
                     </div>
                   </div>
                 </div>
@@ -93,114 +110,109 @@
             </div>
           </div>
         </section>
-        <section class="panel panel--info">
-          <div class="container">
-            <h1 class="text">MOTION<span>인터랙티브</span></h1>
-            <h1 class="text">
-              JAVASCRIPT<span><a href="">스크립트 모듈화</a></span>
-            </h1>
-            <h1 class="text">VUE3<span>기본 컴포넌트</span></h1>
-            <h1 class="text">SCSS<span>스타일 모듈화</span></h1>
-            <h1 class="text">
-              COMMUNICATION<span><a href="https://twitter.com/juxtopposed" target="_blank">소통</a></span>
-            </h1>
+
+        <section class="section section--info">
+          <h2 class="section__title">SKILL</h2>
+          <div class="text-scroll">
+            <div class="text-scroll__align">JAVASCRIPT<span class="text-scroll__align__hover"><a href="">스크립트 모듈화</a></span></div>
+            <div class="text-scroll__align">SCSS<span class="text-scroll__align__hover">스타일 모듈화</span></div>
+            <div class="text-scroll__align">MOTION<span class="text-scroll__align__hover">인터랙티브</span></div>
+            <div class="text-scroll__align">VUE3<span class="text-scroll__align__hover">기본 컴포넌트</span></div>
+            <div class="text-scroll__align">
+              AI Engineering
+              <span class="text-scroll__align__hover"><a href="https://twitter.com/juxtopposed" target="_blank">Cursor AI</a></span>
+            </div>
           </div>
         </section>
-        <section id="section_to-pin" class="grid-container full section section_to-pin four">
-          <div id="section_pin" class="section_pin">
-            <div class="content_wrapper">
-              <h1>WORKS.</h1>
+
+        <section class="section section--works">
+          <div class="pin-wrap">
+            <div class="pin">
+              <div class="pin__item pin__item--title">
+                <h2 class="section__title">WORKS.</h2>
+              </div>
+              <div class="pin__item pin__item--work" data-work-url="https://www.samsungwelstory.com/main.do">
+                <div class="work-text">
+                  <p class="work-text__title">Samsung Welstory</p>
+                  <p class="work-text__type">리뉴얼 구축</p>
+                  <p class="work-text__hidden work-text__period">2025.</p>
+                  <ul class="work-text__hidden work-text__detail">
+                    <li>RFP - 리뉴얼 오픈 PA 참여</li>
+                    <li>웹와치 웹접근성 인증마크 획득</li>
+                  </ul>
+                </div>
+                <img class="pin__item__image" src="https://images.unsplash.com/photo-1516647768-31ff0cef8821?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=870&amp;q=80" alt="Lil' Image">
+              </div>
+              <div class="pin__item pin__item--work" data-work-url="https://www.larocheposay.co.kr/">
+                <div class="work-text">
+                  <p class="work-text__title">LAROCHEPOSAY</p>
+                  <p class="work-text__type">운영</p>
+                  <p class="work-text__hidden work-text__period">2025.</p>
+                  <ul class="work-text__hidden work-text__detail">
+                    <li>RFP / 리뉴얼 구축 PA 참여</li>
+                    <li>웹와치 웹접근성 인증마크 획득</li>
+                  </ul>
+                </div>
+                <img class="pin__item__image" src="https://images.unsplash.com/photo-1516648064-ee10acfa64db?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=863&amp;q=80" alt="Lil' Image"/>
+              </div>
+              <div class="pin__item pin__item--work" data-work-url="https://www.starfieldmarket.com/">
+                <div class="work-text">
+                  <p class="work-text__title">Emart 스타필드마켓</p>
+                  <p class="work-text__type">신규 구축</p>
+                  <p class="work-text__hidden work-text__period">2025.</p>
+                  <ul class="work-text__hidden work-text__detail">
+                    <li>RFP - 리뉴얼 오픈 PA 참여</li>
+                    <li>웹와치 웹접근성 인증마크 획득</li>
+                  </ul>
+                </div>
+                <img class="pin__item__image" src="https://images.unsplash.com/photo-1516648064-ee10acfa64db?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=863&amp;q=80" alt="Lil' Image"/>
+              </div>
+              <div class="pin__item pin__item--work" data-work-url="https://www.ifcmallseoul.com/kr/main">
+                <div class="work-text">
+                  <p class="work-text__title">IFC Mall</p>
+                  <p class="work-text__type">운영</p>
+                  <p class="work-text__hidden work-text__period">2025.</p>
+                </div>
+                <img class="pin__item__image" src="https://images.unsplash.com/photo-1516647072-a39e59e34b97?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=870&amp;q=80" alt="Lil' Image"/>
+              </div>
+              <div class="pin__item pin__item--work" data-work-url="https://www.ifcmallseoul.com/kr/main">
+                <div class="work-text">
+                  <p class="work-text__title">IFC Mall</p>
+                  <p class="work-text__type">리뉴얼 구축</p>
+                  <p class="work-text__hidden work-text__period">2025.</p>
+                  <ul class="work-text__hidden work-text__detail">
+                    <li>리뉴얼 구축 PA 참여</li>
+                  </ul>
+                </div>
+                <img class="pin__item__image" src="https://images.unsplash.com/photo-1516647072-a39e59e34b97?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=870&amp;q=80" alt="Lil' Image"/>
+              </div>
+              <div class="pin__item pin__item--end">
+                <p class="pin__item--end__text">END.</p>
+              </div>
             </div>
-            <div id="image_wrapper_1" class="image_wrapper image_wrapper_1">
-              <img class="image" src="https://images.unsplash.com/photo-1516647768-31ff0cef8821?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=870&amp;q=80" alt="Lil' Image"/>
-            </div>
-            <div id="image_wrapper_2" class="image_wrapper image_wrapper_2">
-              <img class="image" src="https://images.unsplash.com/photo-1516648064-ee10acfa64db?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=863&amp;q=80" alt="Lil' Image"/>
-            </div>
-            <div id="image_wrapper_3" class="image_wrapper image_wrapper_3">
-              <img class="image" src="https://images.unsplash.com/photo-1516647072-a39e59e34b97?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=870&amp;q=80" alt="Lil' Image"/>
+          </div>
+          <div class="work-view-wrap">
+            <div class="work-view">
+              <button class="work-view__close">닫기</button>
+              <dl class="work-view__info">
+                <dt class="work-view__info__title">삼성웰스토리</dt>
+                <dd class="work-view__info__category">리뉴얼</dd>
+                <dd class="work-view__info__period">~2025.02.06</dd>
+                <dd class="work-view__info__detail">
+                  <ul>
+                    <li>상세내용</li>
+                  </ul>
+                </dd>
+              </dl>
+              <a href="" class="work-view__link" target="_blank">
+                <img>
+              </a>
             </div>
           </div>
         </section>
       </main>
-      <!-- <div class="smooth-wrap">
-        <div class="smooth-cont">
-          <section class="smooth-cont__sec smooth-cont__sec--visual">
-            <div class="__obj __obj--txt">
-              <div class="__txt">
-                <span class="__origin">Y</span>
-                <span class="__shadow">Y</span>
-              </div>
-              <div class="__txt">
-                <span class="__origin">O</span>
-                <span class="__shadow">O</span>
-              </div>
-              <div class="__txt">
-                <span class="__origin">U</span>
-                <span class="__shadow">U</span>
-              </div>
-            </div>
-            <div class="__obj __obj--ball">
-              <div class="__ball"></div>
-            </div>
-            <div class="__obj __obj--lamp">
-              <div class="__lamp">
-                <img src="./assets/image/lamp_1.png" alt="lamp">
-              </div>
-            </div>
-          </section>
-          <section class="smooth-cont__sec smooth-cont__sec--project-filter">
-            <h2>Projects</h2>
-            <div class="btn-wrap">
-              <button>All</button>
-              <button>Development</button>
-              <button>Maintenance</button>
-            </div>
-          </section>
-          <section class="smooth-cont__sec smooth-cont__sec--project horizontal-wrap">
-            <div class="horizontal-cont">
-              <div class="horizontal-cont__sec horizontal-cont__sec--intro">
-                <div class="__inner">
-                  <h2 class="__tit">All</h2>
-                </div>
-              </div>
-              <div class="horizontal-cont__sec">
-                <h3 class="__tit">Samsung Welstory</h3>
-              </div>
-              <div class="horizontal-cont__sec">
-                <h3 class="__tit">IFC Mall</h3>
-              </div>
-            </div>
-          </section>
-          <section class="smooth-cont__sec">
-            <div>
-              <h2><span>This should be a light cream background</span></h2>
-            </div>
-          </section>
-  
-          <section class="smooth-cont__sec">
-            <img src="https://images.pexels.com/photos/4791474/pexels-photo-4791474.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
-            <h2>This should be a pink background</h2>
-          </section>
-          <section class="smooth-cont__sec horizontal-wrap">
-            <div class="horizontal-cont">
-              <h2>This whole horizontal section should be brown</h2>
-              <img src="https://images.pexels.com/photos/5207262/pexels-photo-5207262.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="" />
-              <img src="https://images.pexels.com/photos/3371358/pexels-photo-3371358.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="" />
-              <img src="https://images.pexels.com/photos/3618545/pexels-photo-3618545.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="" />
-            </div>
-          </section>
-          <section class="smooth-cont__sec">
-            <div>
-              <h2 ><span>This should be a light cream background</span></h2>
-            </div>
-          </section>
-          <section class="smooth-cont__sec">
-            <img src="https://images.pexels.com/photos/4791474/pexels-photo-4791474.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
-            <h2>This should be a pink background</h2>
-          </section>
-        </div>
-      </div> -->
     </div>
+
+    <script src="./assets/js/app.js"></script>
   </body>
 </html>
