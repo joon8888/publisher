@@ -1,0 +1,95 @@
+@use '../utils' as *;
+
+// 마우스 효과
+#cursor {
+  // position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  pointer-events: none;
+      mix-blend-mode: difference;
+
+  .cursor__item {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(255, 0, 0, 0.6);
+    transition: all 0.2s $ease-in-out-quad;
+    
+    &__text::after {
+      display: block;
+    }
+  }
+    
+  &[data-cursor-status='zoom'] .cursor__item {
+    transform: translate(-50%,-50%) scale(2);
+  }
+
+  &[data-cursor-status='click'] .cursor__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    &__text {
+      &::after {
+        content: 'CLICK';
+        color: #fff;
+        font-size: 28px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &[data-cursor-status='scroll'] .cursor__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    &__text {
+      &::after {
+        content: 'SCROLL';
+        color: #fff;
+        font-size: 28px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &[data-cursor-status='goToSite'] .cursor__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    &__text {
+      &::after {
+        content: 'VISIT';
+        color: #fff;
+        font-size: 28px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &[data-cursor-status='close'] .cursor__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    &__text {
+      &::after {
+        content: 'BACK';
+        color: #fff;
+        font-size: 28px;
+        font-weight: 700;
+      }
+    }
+  }
+
+}

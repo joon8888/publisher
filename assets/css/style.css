@@ -144,7 +144,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  background: #efefef;
   width: inherit;
   height: inherit;
   animation: fadeOut 1s 2.5s forwards;
@@ -229,7 +229,7 @@ body {
 }
 
 .section--visual {
-  height: 200vh;
+  height: 180vh;
 }
 
 .fold {
@@ -350,7 +350,7 @@ body {
 .pin {
   height: 100vh;
   max-height: 1000px;
-  padding: 20vw 12vw;
+  padding: 18vh 12vw;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -369,15 +369,10 @@ body {
 }
 .pin__item--work {
   width: 400px;
+  max-width: 100%;
   margin: 20px;
   position: relative;
   transition: all 0.6s;
-}
-.pin__item--work:nth-of-type(2n-1) {
-  align-self: flex-start;
-}
-.pin__item--work:nth-of-type(2n) {
-  align-self: flex-end;
 }
 .pin__item--work .work-text {
   -webkit-clip-path: inset(0% 0% 0% 0%);
@@ -412,7 +407,7 @@ body {
   display: block;
   width: 100%;
   height: auto;
-  opacity: 0.7;
+  opacity: 0.8;
   -webkit-clip-path: inset(0% 16.7% 0% 16.7%);
           clip-path: inset(0% 16.7% 0% 16.7%);
   will-change: clip-path, transform;
@@ -449,15 +444,100 @@ body {
   display: block;
 }
 .work-view-wrap img {
+  width: 600px;
+  max-width: 100%;
   -webkit-clip-path: inset(0% 0% 100% 0%);
           clip-path: inset(0% 0% 100% 0%);
   transition: transform 0.6s ease, -webkit-clip-path 0.6s ease;
   transition: clip-path 0.6s ease, transform 0.6s ease;
   transition: clip-path 0.6s ease, transform 0.6s ease, -webkit-clip-path 0.6s ease;
+  cursor: none;
   will-change: clip-path, transform;
+}
+.work-view__inner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .work-view.active img {
   -webkit-clip-path: inset(0%);
           clip-path: inset(0%);
   will-change: clip-path, transform;
+}
+
+#cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+#cursor .cursor__item {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 0, 0, 0.6);
+  transition: all 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+#cursor .cursor__item__text::after {
+  display: block;
+}
+#cursor[data-cursor-status=zoom] .cursor__item {
+  transform: translate(-50%, -50%) scale(2);
+}
+#cursor[data-cursor-status=click] .cursor__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+}
+#cursor[data-cursor-status=click] .cursor__item__text::after {
+  content: "CLICK";
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+}
+#cursor[data-cursor-status=scroll] .cursor__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+}
+#cursor[data-cursor-status=scroll] .cursor__item__text::after {
+  content: "SCROLL";
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+}
+#cursor[data-cursor-status=goToSite] .cursor__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+}
+#cursor[data-cursor-status=goToSite] .cursor__item__text::after {
+  content: "VISIT";
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+}
+#cursor[data-cursor-status=close] .cursor__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+}
+#cursor[data-cursor-status=close] .cursor__item__text::after {
+  content: "BACK";
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
 }/*# sourceMappingURL=style.css.map */
