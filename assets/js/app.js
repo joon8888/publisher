@@ -87,7 +87,7 @@ class App {
           completed++;
           if (completed === totalAnimations) {
             intro.remove();
-            //this.lenis.start();
+            // this.lenis.start();
             const visualSec = document.querySelector('.section--visual');
             visualSec.dataset.cursor = 'scroll';
 

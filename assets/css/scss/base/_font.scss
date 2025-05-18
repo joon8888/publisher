@@ -1,9 +1,15 @@
 // 유틸리티(변수, 믹스인, 함수)
 @use '../utils' as *;
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans+KR:wght@100..900&display=swap');
 html, body {
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+}
+* {
+  font-family: $font-kr;
+  font-style: normal;
+  font-weight: 400;
 }
