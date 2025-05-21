@@ -110,7 +110,8 @@ class App {
 
   foldMoitionEvent () {
     gsap.utils.toArray('.fold__conts__item').forEach((el, index) => {
-      const w = el.querySelector('.track');
+      const w = el?.querySelector('.track');
+      if (!w) return;
       const [x, xEnd] = (index % 2 === 0) ? [-500, -1500] : [-500, 0];
       gsap.fromTo(w, { x }, {
         x: xEnd,
@@ -124,6 +125,7 @@ class App {
     const centerFold = document.querySelector('.fold--center');
     const centerContent = centerFold?.querySelector('.fold--center .fold__conts');
     const foldsContent = Array.from(document.querySelectorAll('.fold__conts'));
+    if (!(centerFold && centerContent && foldsContent.length)) return;
 
     let targetScroll = 0;
     let currentScroll = 0;
@@ -147,6 +149,7 @@ class App {
 
   textTriggerEvent () {
     const textElements = gsap.utils.toArray('.text-scroll__align');
+    if (textElements.length === 0) return;
 
     textElements.forEach(text => {
       gsap.to(text, {
@@ -167,6 +170,8 @@ class App {
 
   horizontalScrollEvent () {
     const sectionPin = document.querySelector('.pin')
+    if(!sectionPin) return;
+    
     const scrollTween = gsap.to(sectionPin, {
       scrollTrigger: {
         trigger: '.section--works',
@@ -189,7 +194,24 @@ class App {
     const workView = document.querySelector('.work-view');
     const closeWorkViewBtn = workView.querySelector('.work-view__close');
 
+
     pinItemWorks.forEach(item => {
+      const targets = item.querySelectorAll('.work-text > p, .work-text li');
+      targets.forEach(el => {
+        const text = el.textContent;
+        el.innerHTML = ''; 
+
+        [...text].forEach(char => {
+          const span = document.createElement('span');
+          if (char === ' ') {
+            span.innerHTML = '&nbsp;';
+          } else {
+            span.textContent = char;
+          }
+          el.appendChild(span);
+        });
+      });
+      console.log(targets)
       item.addEventListener('click', () => {
         const title = item.querySelector('.work-text__title')?.textContent.trim() || '';
         const type = item.querySelector('.work-text__type')?.textContent.trim() || '';
@@ -197,7 +219,7 @@ class App {
         const detailListItems = item.querySelectorAll('.work-text__detail li');
         const detailTexts = Array.from(detailListItems).map(li => li.textContent.trim());
 
-        const image = item.querySelector('.pin__item__image');
+        const image = item.querySelector('.pin__item__image img');
         const imageSrc = image?.getAttribute('src') || '';
         const imageAlt = title;
         const workUrl = item.dataset.workUrl || '#';
@@ -234,7 +256,7 @@ class App {
       this.lenis.start();
       setTimeout(() => {
         workView.closest('.work-view-wrap').classList.remove('active');
-      }, 600);
+      }, 1000);
       workView.classList.remove('active');
     });
 

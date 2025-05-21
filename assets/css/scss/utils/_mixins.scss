@@ -1,3 +1,42 @@
+@use './variables' as *;
+ @use './functions' as *;
+
+// 미디워 쿼리 반응형
+@mixin mobile {
+  @media #{mq('mobile')} {
+    @content;
+  }
+}
+
+@mixin tablet($min-width: null) { 
+  @media #{mq('tablet', null, $min-width)} {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media #{mq('desktop')} {
+    @content;
+  }
+}
+
+@mixin custom-mq($width) {
+  @media #{mq(null, $width)} {
+    @content;
+  }
+}
+
+/* 태블릿 사용 예시
+  @include tablet { 
+    color: blue; // 태블릿, 기본적으로 ~ max-width: 1024px까지만 적용
+  }
+
+  @include tablet(768px) { 
+    color: green; // 768px 이상 1024px 이하 범위에서 녹색
+  }
+*/
+
+
 @mixin flex ($ai: center, $jc: center) {
   display: flex;
   align-items: $ai;
