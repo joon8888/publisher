@@ -1,25 +1,30 @@
 window.CursorEffect = class {
-  constructor (userOptions) {
-    const defaultOptions = {enableSmoothing: false, smoothingSpeed: 0.1, hideDefaultCursor: false, enableHoverEffect: false};
+  constructor(userOptions) {
+    const defaultOptions = {
+      enableSmoothing: false,
+      smoothingSpeed: 0.1,
+      hideDefaultCursor: false,
+      enableHoverEffect: false,
+    };
     this.options = Object.assign({}, defaultOptions, userOptions || {});
     this.cursor = null;
     this.pageX = 0;
     this.pageY = 0;
     this.targetX = 0;
     this.targetY = 0;
-    this.init()
+    this.init();
   }
 
-  init () {
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return; //모바일 제외
+  init() {
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return; // 모바일 제외
 
     this.createCursorEl();
-    if(!this.options.hideDefaultCursor) this.cursorStyleHandler();
+    if (!this.options.hideDefaultCursor) this.cursorStyleHandler();
     this.moveCursorEvent();
-    if(this.options.enableHoverEffect) this.changeCursorEvent();
+    if (this.options.enableHoverEffect) this.changeCursorEvent();
   }
 
-  createCursorEl () {
+  createCursorEl() {
     this.cursor = document.createElement('div');
     this.cursor.id = 'cursor';
     document.body.appendChild(this.cursor);
@@ -33,14 +38,16 @@ window.CursorEffect = class {
     cursorItem.appendChild(cursorText);
   }
 
-  moveCursorEvent () {
-    window.addEventListener('mousemove', e => {
+  moveCursorEvent() {
+    window.addEventListener('mousemove', (e) => {
       this.pageX = e.clientX;
       this.pageY = e.clientY;
-    })
+    });
 
-    const loop = this.options.enableSmoothing ? this.smoothLoop.bind(this) : this.instantLoop.bind(this);
-    loop(); 
+    const loop = this.options.enableSmoothing
+      ? this.smoothLoop.bind(this)
+      : this.instantLoop.bind(this);
+    loop();
   }
 
   smoothLoop() {
@@ -63,25 +70,33 @@ window.CursorEffect = class {
     animate();
   }
 
-  cursorStyleHandler () {
+  cursorStyleHandler() {
     document.body.style.cursor = 'none';
   }
 
-  changeCursorEvent () {
-    const hoverItems = document.querySelectorAll('[data-cursor]')
+  changeCursorEvent() {
+    const hoverItems = document.querySelectorAll('[data-cursor], a[href]:not([href="#"]):not([href="#none"]):not([href="javascript:void(0)"]):not([href="javascript:;"]), button');
     hoverItems.forEach(item => {
-      const cursorStatus = (item.dataset.cursor) ? item.dataset.cursor : 'zoom';
-      item.addEventListener('mouseover', () => this.cursor.dataset.cursorStatus = cursorStatus);
-      item.addEventListener('mouseleave', () => this.cursor.removeAttribute('data-cursor-status'));
-    })
-  }
-
-  refreshHoverTargets () {
-    const hoverItems = document.querySelectorAll('[data-cursor]');
-    hoverItems.forEach(item => {
-      const cursorStatus = item.dataset.cursor || 'zoom';
-      item.addEventListener('mouseover', () => this.cursor.dataset.cursorStatus = cursorStatus);
-      item.addEventListener('mouseleave', () => this.cursor.removeAttribute('data-cursor-status'));
+      item.addEventListener('mouseover', () => {
+        const status = item.dataset.cursor;
+        this.cursor.dataset.cursorStatus = status ? status : 'zoom';
+      });
+      item.addEventListener('mouseleave', () => {
+        this.cursor.removeAttribute('data-cursor-status');
+      });
     });
   }
-}
+
+  refreshHoverTargets() {
+    const hoverItems = document.querySelectorAll('[data-cursor], a[href]:not([href="#"]):not([href="#none"]):not([href="javascript:void(0)"]):not([href="javascript:;"]), button');
+    hoverItems.forEach(item => {
+      item.addEventListener('mouseover', () => {
+        const status = item.dataset.cursor;
+        this.cursor.dataset.cursorStatus = status ? status : 'zoom';
+      });
+      item.addEventListener('mouseleave', () => {
+        this.cursor.removeAttribute('data-cursor-status');
+      });
+    });
+  }
+};

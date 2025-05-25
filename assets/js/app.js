@@ -3,6 +3,9 @@ class App {
     this.setRoot(props);
     this.lenis = null; 
     this.init();
+    window.addEventListener('resize', () => {
+      ScrollTrigger.refresh();
+    });
   }
 
   setRoot({ context, name }) {
@@ -13,6 +16,8 @@ class App {
   async init () {
     await this.initScrollTrigger();
     await this.introEvent();    
+    this.updateBodyBgByScroll();
+    this.menuActiveEvent();
     this.initCursorEffect(); 
     this.foldMoitionEvent();
     this.textTriggerEvent();     
@@ -57,6 +62,35 @@ class App {
     this.lenis.on('scroll', ScrollTrigger.update);
   }
 
+  updateBodyBgByScroll () {
+    const sections = gsap.utils.toArray('.section[data-bg]');
+    if (!sections.length) return;
+  
+    sections.forEach((section, index) => {
+      const nextBg = section.dataset.bg;
+      const prevBg = index === 0
+        ? getComputedStyle(document.body).backgroundColor
+        : sections[index - 1].dataset.bg;
+  
+      gsap.fromTo(
+        document.body,
+        { backgroundColor: prevBg },
+        {
+          backgroundColor: nextBg,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 20%',
+            end: 'top 0%',
+            scrub: true,
+            scroller: document.body,
+            // markers: true
+          },
+        }
+      );
+    });
+  }  
+
   async introEvent () {
     // this.lenis.stop();
     setTimeout(() => {
@@ -68,36 +102,48 @@ class App {
     const intro = document.querySelector('.intro');
     if (!intro) return;
 
-    const animatedEls = Array.from(intro.querySelectorAll('*'));
-    let totalAnimations = 0;
+    // const animatedEls = Array.from(intro.querySelectorAll('*'));
+    // let totalAnimations = 0;
 
-    animatedEls.forEach(el => {
-      const style = getComputedStyle(el);
-      const names = style.animationName.split(',').map(n => n.trim());
-      const count = names.filter(name => name !== 'none').length;
-      totalAnimations += count;
-    });
+    // animatedEls.forEach(el => {
+    //   const style = getComputedStyle(el);
+    //   const names = style.animationName.split(',').map(n => n.trim());
+    //   const count = names.filter(name => name !== 'none').length;
+    //   totalAnimations += count;
+    // });
 
-    let completed = 0;
-    if (totalAnimations === 0) {
+    // let completed = 0;
+    // if (totalAnimations === 0) {
+    //   intro.remove();
+    // } else {
+    //   animatedEls.forEach(el => {
+    //     el.addEventListener('animationend', () => {
+    //       completed++;
+    //       if (completed === totalAnimations) {
+    //         intro.remove();
+    //         // this.lenis.start();
+    //         const visualSec = document.querySelector('.section--visual');
+    //         visualSec.dataset.cursor = 'scroll';
+
+    //         if (this.cursorEffect?.refreshHoverTargets) {
+    //           this.cursorEffect.refreshHoverTargets();
+    //         }
+    //       }
+    //     });
+    //   });
+    // }
+    setTimeout(() => {
       intro.remove();
-    } else {
-      animatedEls.forEach(el => {
-        el.addEventListener('animationend', () => {
-          completed++;
-          if (completed === totalAnimations) {
-            intro.remove();
-            // this.lenis.start();
-            const visualSec = document.querySelector('.section--visual');
-            visualSec.dataset.cursor = 'scroll';
-
-            if (this.cursorEffect?.refreshHoverTargets) {
-              this.cursorEffect.refreshHoverTargets();
-            }
-          }
-        });
-      });
-    }
+  
+      const visualSec = document.querySelector('.section--visual');
+      visualSec.dataset.cursor = 'scroll';
+  
+      if (this.cursorEffect?.refreshHoverTargets) {
+        this.cursorEffect.refreshHoverTargets();
+      }
+  
+      // this.lenis.start(); // 원하면 다시 풀어주기
+    }, 3600);
   }
 
   initCursorEffect () {
@@ -106,6 +152,132 @@ class App {
       hideDefaultCursor: false,
       enableSmoothing: false,
     });
+  }
+
+  menuActiveEvent () {
+    let isOpen = false;
+    const menu = document.querySelector('.menu');
+    const menuToggleBtn = menu?.querySelector('.menu__btn-toggle');
+    const menuWrap = menu?.querySelector('.menu__nav-wrap');
+    const anchors = menu?.querySelectorAll('.menu__nav__anchor');
+
+    // anchors.forEach(anchor => {
+    //   this.setSpanText(anchor, anchor.textContent);
+    
+    //   anchor.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    
+    //     const targetId = anchor.dataset.target;
+    //     const targetEl = document.getElementById(targetId);
+    //     if (!targetEl) return;
+    
+    //     menu.classList.remove('menu--active');
+    //     setTimeout(() => {
+    //       menuWrap.style.display = 'none';
+    //     }, 1000);
+    
+    //     isOpen = false;
+    //     this.lenis.start(); // 필요 시
+    //     menuToggleBtn.removeAttribute('data-cursor');
+    
+    //     const offsetTop = targetEl.getBoundingClientRect().top + window.scrollY;
+    //     window.scrollTo(0, offsetTop);
+    //   });
+    // });
+
+    anchors.forEach(anchor => {
+      this.setSpanText(anchor, anchor.textContent);
+    
+      anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+    
+        const targetId = anchor.dataset.target;
+        const targetEl = document.getElementById(targetId);
+        if (!targetEl) return;
+    
+        // 👇 트랜지션 애니메이션 실행
+        const createTransitionScreen = (direction) => {
+          const screen = document.createElement('div');
+          screen.classList.add('transition-screen', `transition-screen--${direction}`);
+    
+          for (let i = 0; i < 6; i++) {
+            const tile = document.createElement('span');
+            tile.classList.add('transition-screen__tile');
+            screen.appendChild(tile);
+          }
+    
+          menu.appendChild(screen);
+    
+          const timeout = direction === 'right' ? 1000 : 1800;
+          setTimeout(() => {
+            screen.remove();
+          }, timeout);
+        };
+    
+        createTransitionScreen('right');
+    
+        menu.classList.remove('menu--active');
+        setTimeout(() => {
+          menuWrap.style.display = 'none';
+        }, 1000);
+    
+        isOpen = false;
+        this.lenis.start();
+        menuToggleBtn.removeAttribute('data-cursor');
+    
+        const offsetTop = targetEl.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo(0, offsetTop);
+      });
+    });
+
+    menuToggleBtn.addEventListener('click', e => {
+      const toggleBtn = e.currentTarget;
+    
+      const createTransitionScreen = (direction) => {
+        const screen = document.createElement('div');
+        screen.classList.add('transition-screen', `transition-screen--${direction}`);
+        
+        for (let i = 0; i < 6; i++) {
+          const tile = document.createElement('span');
+          tile.classList.add('transition-screen__tile');
+          screen.appendChild(tile);
+        }
+    
+        menu.appendChild(screen);
+    
+        const timeout = direction === 'left' ? 1800 : 1000; 
+        setTimeout(() => {
+          screen.remove();
+        }, timeout);
+      };
+    
+      if (!isOpen) {
+        // 메뉴 열기
+        createTransitionScreen('left');
+        menuWrap.style.display = 'block';
+        setTimeout(() => {
+          menu.classList.add('menu--active');
+        }, 10);
+        this.lenis.stop();
+        toggleBtn.setAttribute('data-cursor', 'close');
+      } else {
+        // 메뉴 닫기
+        createTransitionScreen('right');
+        menu.classList.remove('menu--active');
+        setTimeout(() => {
+          menuWrap.style.display = 'none';
+        }, 1000);
+        this.lenis.start();
+        toggleBtn.removeAttribute('data-cursor');
+      }
+    
+      isOpen = !isOpen;
+    
+      if (this.cursorEffect?.refreshHoverTargets) {
+        this.cursorEffect.refreshHoverTargets();
+      }
+    });
+    
   }
 
   foldMoitionEvent () {
@@ -171,7 +343,9 @@ class App {
   horizontalScrollEvent () {
     const sectionPin = document.querySelector('.pin')
     if(!sectionPin) return;
-    
+  
+    const menuBtn = document.querySelector('.menu__btn-toggle');
+  
     const scrollTween = gsap.to(sectionPin, {
       scrollTrigger: {
         trigger: '.section--works',
@@ -181,10 +355,25 @@ class App {
         pin: true,
         anticipatePin: 1,
         scroller: document.body,
-        invalidateOnRefresh: true
+        invalidateOnRefresh: true,
+        onEnter: () => menuBtn?.classList.add('menu__btn-toggle--dark'),
+        onEnterBack: () => menuBtn?.classList.add('menu__btn-toggle--dark'),
+        onLeave: () => menuBtn?.classList.remove('menu__btn-toggle--dark'),
+        onLeaveBack: () => menuBtn?.classList.remove('menu__btn-toggle--dark'),
       },
       x: () => -(sectionPin.scrollWidth - window.innerWidth),
       ease: "none"
+    });
+  }
+  
+  
+
+  setSpanText(el, text) {
+    el.innerHTML = '';
+    [...text].forEach(char => {
+      const span = document.createElement('span');
+      span.textContent = char === ' ' ? '\u00A0' : char;
+      el.appendChild(span);
     });
   }
 
@@ -199,20 +388,11 @@ class App {
       const targets = item.querySelectorAll('.work-text > p, .work-text li');
       targets.forEach(el => {
         const text = el.textContent;
-        el.innerHTML = ''; 
-
-        [...text].forEach(char => {
-          const span = document.createElement('span');
-          if (char === ' ') {
-            span.innerHTML = '&nbsp;';
-          } else {
-            span.textContent = char;
-          }
-          el.appendChild(span);
-        });
+        this.setSpanText(el, text);
       });
-      console.log(targets)
-      item.addEventListener('click', () => {
+
+      item.addEventListener('click', e => {
+        e.preventDefault();
         const title = item.querySelector('.work-text__title')?.textContent.trim() || '';
         const type = item.querySelector('.work-text__type')?.textContent.trim() || '';
         const period = item.querySelector('.work-text__period')?.textContent.trim() || '';
@@ -221,24 +401,33 @@ class App {
 
         const image = item.querySelector('.pin__item__image img');
         const imageSrc = image?.getAttribute('src') || '';
-        const imageAlt = title;
-        const workUrl = item.dataset.workUrl || '#';
+        const imageAlt = image.getAttribute('alt');
+        const workUrl = item.dataset.workUrl;
+        
+        this.setSpanText(workView.querySelector('.work-view__info__title'), title);
+        this.setSpanText(workView.querySelector('.work-view__info__category'), type);
+        this.setSpanText(workView.querySelector('.work-view__info__period'), period);
 
-        workView.querySelector('.work-view__info__title').textContent = title;
-        workView.querySelector('.work-view__info__category').textContent = type;
-        workView.querySelector('.work-view__info__period').textContent = '~' + period;
-
+        // 상세 리스트 처리
         const detailContainer = workView.querySelector('.work-view__info__detail ul');
-        detailContainer.innerHTML = ''; // 기존 내용 초기화
+        detailContainer.innerHTML = ''; 
         detailTexts.forEach(text => {
           const li = document.createElement('li');
-          li.textContent = text;
+          this.setSpanText(li, text);
           detailContainer.appendChild(li);
         });
 
+
         const link = workView.querySelector('.work-view__link');
         const previewImg = link.querySelector('img');
-        link.setAttribute('href', workUrl);
+        if (workUrl) {
+          link.setAttribute('href', workUrl);
+        } else {
+          link.setAttribute('href', 'javascript:void(0)');
+          link.removeAttribute('target');
+          link.removeAttribute('data-cursor');
+          this.cursorEffect.refreshHoverTargets();
+        }
         previewImg.setAttribute('src', imageSrc);
         previewImg.setAttribute('alt', imageAlt);
 

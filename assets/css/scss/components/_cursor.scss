@@ -9,6 +9,7 @@
   z-index: 10000;
   pointer-events: none;
   mix-blend-mode: difference;
+  filter: unquote("invert()");
 
   .cursor__item {
     position: fixed;
@@ -16,7 +17,7 @@
     height: 20px;
     border-radius: 50%;
     transform: translate(-50%,-50%);
-    background: rgba(255, 0, 0, 0.6);
+    background: rgba(0,0,0,1);
     transition: all 0.2s $ease-in-out-quad;
     
     &__text::after {
@@ -50,6 +51,8 @@
     align-items: center;
     width: 150px;
     height: 150px;
+    background: #6600ff;
+    
     &__text {
       &::after {
         content: 'SCROLL';
