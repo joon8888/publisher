@@ -36,10 +36,63 @@
   }
 */
 
+@mixin font-style ($fz, $fw: inherit, $lh: normal, $ls: 0px) {
+  font-family: $font-f-noto;
+  font-size: $fz;
+  font-style: normal;
+  font-weight: $fw;
+  line-height: $lh;
+  letter-spacing: $ls;
+  @content;
+}
 
-@mixin flex ($ai: center, $jc: center) {
+@mixin flex ($direction: row, $ai: center, $jc: flex-start, $gap: 0) { 
   display: flex;
+  flex-direction: $direction;
   align-items: $ai;
   justify-content: $jc;
+  gap: $gap;
   @content;
+}
+
+// 가상요소 생성
+@mixin after($w, $h) {
+  position: relative;
+
+  &::after {
+    display: block;
+    position: absolute;
+    content: '';
+    width: $w;
+    height: $h;
+    @content;
+  }
+}
+
+@mixin before($w, $h) {
+  position: relative;
+
+  &::before {
+    display: block;
+    position: absolute;
+    content: '';
+    width: $w;
+    height: $h;
+    @content;
+  }
+}
+
+@mixin before-flex($w, $h, $gap: 0, $content: '') {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: $gap;
+  
+  &::before {
+    display: block;
+    content: $content;
+    width: $w;
+    height: $h;
+    @content;
+  }
 }

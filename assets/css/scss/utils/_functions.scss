@@ -1,4 +1,5 @@
 @use './variables' as *;
+
 // 기본 함수 정의
 @function mq($breakpoint, $custom-width: null, $min-width: null) {
   @if $custom-width != null {
