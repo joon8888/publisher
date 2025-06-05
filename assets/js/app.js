@@ -7,10 +7,8 @@ class App {
       // 디바운싱으로 리사이즈 이벤트 최적화
       clearTimeout(this.resizeTimer);
       this.resizeTimer = setTimeout(() => {
-        // 1. 기존 ScrollTrigger 먼저 제거
         ScrollTrigger.getById('horizontal-scroll')?.kill();
         
-        // 2. 레이아웃 계산 완료 후 재생성
         requestAnimationFrame(() => {
           this.horizontalScrollEvent();
           ScrollTrigger.refresh(); // 마지막에 전체 갱신
@@ -352,17 +350,38 @@ class App {
   }
 
   horizontalScrollEvent () {
-    const sectionPin = document.querySelector('.pin')
-    if(!sectionPin) return;
-
+    const sectionPin = document.querySelector('.pin');
+    const menuBtn = document.querySelector('.menu__btn-toggle');
+    if (!sectionPin) return;
+  
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
     this.lenis.scrollTo(currentScroll, { immediate: true });
-
-    ScrollTrigger.getById('horizontal-scroll')?.kill(); 
-    
-    const menuBtn = document.querySelector('.menu__btn-toggle');
   
-    const scrollTween = gsap.to(sectionPin, {
+    ScrollTrigger.getById('horizontal-scroll')?.kill();
+  
+    // 💡 flex 방향 클래스 분기 여기!
+    if (window.innerWidth <= 1024) {
+      sectionPin.classList.add('pin--vertical');
+      ScrollTrigger.create({
+        id: 'horizontal-scroll',
+        trigger: '.section--works',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+        scroller: document.body,
+        onEnter: () => menuBtn?.classList.add('menu__btn-toggle--dark'),
+        onEnterBack: () => menuBtn?.classList.add('menu__btn-toggle--dark'),
+        onLeave: () => menuBtn?.classList.remove('menu__btn-toggle--dark'),
+        onLeaveBack: () => menuBtn?.classList.remove('menu__btn-toggle--dark'),
+      });
+  
+      return;
+    }
+
+    if(sectionPin.classList.contains('pin--vertical')) {
+      sectionPin.classList.remove('pin--vertical');
+    }
+    gsap.to(sectionPin, {
       scrollTrigger: {
         id: 'horizontal-scroll',
         trigger: '.section--works',
@@ -382,7 +401,6 @@ class App {
       ease: "none"
     });
   }
-  
   
 
   setSpanText(el, text) {

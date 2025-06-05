@@ -788,6 +788,12 @@ body {
   height: 100vh;
   padding: 18vh 12vw;
 }
+.pin--vertical {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
 .pin-wrap {
   display: -webkit-box;
   display: -ms-flexbox;

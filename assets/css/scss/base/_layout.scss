@@ -451,6 +451,10 @@ body {
   @include flex;
   height: 100vh;
   padding: 18vh 12vw;
+  
+  &--vertical {
+    flex-direction: column;
+  }
 
   &-wrap {
     @include flex;
