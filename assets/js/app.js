@@ -4,14 +4,13 @@ class App {
     this.lenis = null; 
     this.init();
     window.addEventListener('resize', () => {
-      // 디바운싱으로 리사이즈 이벤트 최적화
       clearTimeout(this.resizeTimer);
       this.resizeTimer = setTimeout(() => {
         ScrollTrigger.getById('horizontal-scroll')?.kill();
         
         requestAnimationFrame(() => {
           this.horizontalScrollEvent();
-          ScrollTrigger.refresh(); // 마지막에 전체 갱신
+          ScrollTrigger.refresh(); 
         });
       }, 150);
     });
