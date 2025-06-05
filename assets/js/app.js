@@ -5,6 +5,9 @@ class App {
     this.init();
     window.addEventListener('resize', () => {
       ScrollTrigger.refresh();
+      requestAnimationFrame(() => {
+        this.horizontalScrollEvent(); // 레이아웃 업데이트 후 호출
+      });
     });
   }
 
@@ -343,11 +346,13 @@ class App {
   horizontalScrollEvent () {
     const sectionPin = document.querySelector('.pin')
     if(!sectionPin) return;
-  
+    ScrollTrigger.getById('horizontal-scroll')?.kill(); 
+    
     const menuBtn = document.querySelector('.menu__btn-toggle');
   
     const scrollTween = gsap.to(sectionPin, {
       scrollTrigger: {
+        id: 'horizontal-scroll',
         trigger: '.section--works',
         start: 'top top',
         end: () => "+=" + sectionPin.scrollWidth,

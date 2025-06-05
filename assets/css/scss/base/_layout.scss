@@ -37,11 +37,12 @@
 }
 
 html {
-  font-size: max(10px, calc(100vw / 1920 * 10));
+  font-size: 62.5%;
+  // font-size: max(10px, calc(100vw / 1920 * 10));
 
-  @include mobile {
-    font-size: calc(100vw / 390 * 10);
-  }
+  // @include mobile {
+  //   font-size: calc(100vw / 390 * 10);
+  // }
 }
 
 body {

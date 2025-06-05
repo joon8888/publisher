@@ -202,12 +202,7 @@ html, body {
   }
 }
 html {
-  font-size: max(10px, 0.5208333333vw);
-}
-@media all and (max-width: 767px) {
-  html {
-    font-size: 2.5641025641vw;
-  }
+  font-size: 62.5%;
 }
 
 body {
