@@ -353,13 +353,13 @@ class App {
     const sectionPin = document.querySelector('.pin');
     const menuBtn = document.querySelector('.menu__btn-toggle');
     if (!sectionPin) return;
-  
+
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
     this.lenis.scrollTo(currentScroll, { immediate: true });
   
     ScrollTrigger.getById('horizontal-scroll')?.kill();
   
-    // 💡 flex 방향 클래스 분기 여기!
+
     if (window.innerWidth <= 1024) {
       sectionPin.classList.add('pin--vertical');
       ScrollTrigger.create({
@@ -369,10 +369,22 @@ class App {
         end: 'bottom top',
         scrub: true,
         scroller: document.body,
-        onEnter: () => menuBtn?.classList.add('menu__btn-toggle--dark'),
-        onEnterBack: () => menuBtn?.classList.add('menu__btn-toggle--dark'),
-        onLeave: () => menuBtn?.classList.remove('menu__btn-toggle--dark'),
-        onLeaveBack: () => menuBtn?.classList.remove('menu__btn-toggle--dark'),
+        onEnter: () => {
+          menuBtn?.classList.add('menu__btn-toggle--dark');
+          sectionPin.classList.add('pin--active');
+        },
+        onEnterBack: () => {
+          menuBtn?.classList.add('menu__btn-toggle--dark');
+          sectionPin.classList.add('pin--active');
+        },
+        onLeave: () => {
+          menuBtn?.classList.remove('menu__btn-toggle--dark');
+          sectionPin.classList.remove('pin--active');
+        },
+        onLeaveBack: () => {
+          menuBtn?.classList.remove('menu__btn-toggle--dark');
+          sectionPin.classList.remove('pin--active');
+        }
       });
   
       return;
@@ -392,10 +404,22 @@ class App {
         anticipatePin: 1,
         scroller: document.body,
         invalidateOnRefresh: true,
-        onEnter: () => menuBtn?.classList.add('menu__btn-toggle--dark'),
-        onEnterBack: () => menuBtn?.classList.add('menu__btn-toggle--dark'),
-        onLeave: () => menuBtn?.classList.remove('menu__btn-toggle--dark'),
-        onLeaveBack: () => menuBtn?.classList.remove('menu__btn-toggle--dark'),
+        onEnter: () => {
+          menuBtn?.classList.add('menu__btn-toggle--dark');
+          sectionPin.classList.add('pin--active');
+        },
+        onEnterBack: () => {
+          menuBtn?.classList.add('menu__btn-toggle--dark');
+          sectionPin.classList.add('pin--active');
+        },
+        onLeave: () => {
+          menuBtn?.classList.remove('menu__btn-toggle--dark');
+          sectionPin.classList.remove('pin--active');
+        },
+        onLeaveBack: () => {
+          menuBtn?.classList.remove('menu__btn-toggle--dark');
+          sectionPin.classList.remove('pin--active');
+        }
       },
       x: () => -(sectionPin.scrollWidth - window.innerWidth),
       ease: "none"

@@ -38,21 +38,10 @@
 
 html {
   font-size: 62.5%;
-  // font-size: max(10px, calc(100vw / 1920 * 10));
-
-  // @include mobile {
-  //   font-size: calc(100vw / 390 * 10);
-  // }
 }
 
 body {
   background: $color-white;
-}
-
-:root {
-  --step--2: clamp(3.13rem, 2.62rem + 2.51vw, 5.76rem);
-  --step--1: clamp(3.75rem, 3.09rem + 3.29vw, 7.20rem);
-  --step-0: clamp(4.50rem, 3.64rem + 4.29vw, 9.00rem);
 }
 
 .icon {
@@ -60,14 +49,13 @@ body {
   &--arrow-right {
     width: 10rem;
     height: 10rem;
-    background: url('./../image/ico_arrow_right.svg') center / 100%;
+    background: url('./../image/ico_arrow_right.svg') no-repeat center / 100%;
   }
 }
 
 .intro {
   position: fixed;
-  top: 0;
-  left: 0%;
+  inset: 0;
   z-index: 10001;
   width: 100%;
   height: 100%;
@@ -88,6 +76,7 @@ body {
       font-optical-sizing: auto;
       font-style: normal; 
     }
+
     #text {
       height: auto;
       transform: translateX(50%);
@@ -98,6 +87,10 @@ body {
       stroke-dasharray: 1000;
       stroke-dashoffset: 1100;
       animation: draw 110s cubic-bezier(0,1,0.2,1) forwards;
+
+      @include mobile {
+        font-size: 3.6rem;
+      }
     }
   }
 }
@@ -152,6 +145,10 @@ body {
     top: 4rem;
     right: 5rem;
     z-index: 1000;
+    @include mobile {
+      top: 2rem;
+      right: 2rem;
+    }
 
     span {
       display: block;
@@ -159,23 +156,34 @@ body {
       width: 5rem;
       height: 5rem;
       text-indent: -9999px;
+      @include mobile {
+        width: 4rem;
+        height: 4rem;
+      }
 
-      @include before (5rem, 0.6rem) {
+      @include before (100%, 0.6rem) {
         left: 50%;
         top: calc(50% + 1rem);
         transform: translate(-50%, -50%);
         background: $color-black;
         will-change: transform, background;
         transition: transform 0.35s, background 0.35s;
+        
+        @include mobile {
+          top: calc(50% + 0.8rem);
+        }
       }
 
-      @include after (5rem, 0.6rem) {
+      @include after (100%, 0.6rem) {
         left: 50%;
         top: calc(50% - 1rem);
         transform: translate(-50%, -50%);
         background: $color-black;
         will-change: transform, background;
         transition: transform 0.35s, background 0.35s;
+        @include mobile {
+          top: calc(50% - 0.8rem);
+        }
       }
     }
 
@@ -198,6 +206,10 @@ body {
       height: 100%;
       transition: all 0.35s 0.5s;
       padding: 13rem 5rem 0 0;
+
+      @include mobile { 
+        padding-right: 2rem;
+      }
     }
 
     @include flex($direction: column, $ai: end, $gap: 1rem);
@@ -208,6 +220,10 @@ body {
       transition: padding 0.35s;
       &:hover {
         padding-right: 5rem;
+        @include mobile {
+          paddin-right: 2rem;
+        }
+
         span {
           color: $color-primary-purple;
         }
@@ -220,6 +236,10 @@ body {
         font-size: 13rem;
         clip-path: inset(0% 0% 0% 100%);
         transition: clip-path 0.5s;
+
+        @include mobile {
+          font-size: 8rem;
+        }
       }
       &:nth-child(1) span {
         transition-delay: 0.65s;
@@ -262,9 +282,6 @@ body {
   }
 
   &--active {
-    // .nav__wrap {
-    //   transition: all 0.3s;
-    // }
     .menu__btn-toggle {
       span {
         &::before, &::after {
@@ -309,6 +326,9 @@ body {
 .section {
   &--visual {
     height: 180vh;
+    @include mobile {
+      height: 160dvh;
+    }
   }
   &__title {
     @include flex;
@@ -324,6 +344,9 @@ body {
   overflow: hidden;
   width: 100vw;
   height: 80vh;
+  @include mobile {
+    height: 100dvh;
+  }
 
   &-wrap {
     position: fixed;
@@ -344,6 +367,9 @@ body {
     bottom: 100%;
     transform-origin: bottom center;
     transform: rotateX(-120deg);
+    @include mobile {
+      display: none;
+    }
 
     .fold__align {
       transform: translateY(100%);
@@ -361,6 +387,9 @@ body {
     top: 100%;
     transform-origin: top center;
     transform: rotateX(120deg);
+    @include mobile {
+      display: none;
+    }
 
     .fold__align {
       transform: translateY(-100%);
@@ -377,15 +406,20 @@ body {
       border-bottom: 0.1rem solid #1a1a1a;
       color: #ccc;
       font-family: $font-en;
-      font-size: var(--step-0);
+      font-size: max(8rem, calc(140 / 1920 * 100vw));
       font-weight: 500;
-      height: 21rem;
+      height: 25vh;
       overflow: hidden;
       position: relative;
       width: 100vw;
+      @include mobile {
+        height: 25dvh;
+        font-size: max(6rem, calc(100 / 750 * 100vw));
+      }
 
       
       .track {
+        @include flex;
         height: 100%;
         overflow: hidden;
         padding: 2rem 0;
@@ -409,7 +443,7 @@ body {
 
   &__align {
     font-family: $font-en;
-    font-size: var(--step-0);
+    font-size: clamp(4.5rem, calc(45 / 1920 * 100vw) ,9rem);
     font-weight: 700;
     line-height: 100%;
     margin: 0;
@@ -456,10 +490,10 @@ body {
     flex-direction: column;
   }
 
-  &-wrap {
-    @include flex;
-    height: 100vh;
-    left: 0;
+  &--active {
+    .pin__item--title {
+      color: $color-white;
+    }
   }
 
   &__item {
@@ -473,6 +507,8 @@ body {
       width: auto;
       max-width: auto;
       aspect-ratio: auto;
+      will-change: color;
+      transition: color 0.3s;
     }
 
     &--work {
@@ -549,7 +585,8 @@ body {
     &.zoom {
       &-in {
         transform: scale(0.9);
-        filter: blur(2px) grayscale(100%);
+        // filter: blur(2px) grayscale(100%);
+        filter: grayscale(100%);
       }
       &-out {
         transform: scale(1.2);
