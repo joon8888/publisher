@@ -4,10 +4,18 @@ class App {
     this.lenis = null; 
     this.init();
     window.addEventListener('resize', () => {
-      ScrollTrigger.refresh();
-      requestAnimationFrame(() => {
-        this.horizontalScrollEvent(); // 레이아웃 업데이트 후 호출
-      });
+      // 디바운싱으로 리사이즈 이벤트 최적화
+      clearTimeout(this.resizeTimer);
+      this.resizeTimer = setTimeout(() => {
+        // 1. 기존 ScrollTrigger 먼저 제거
+        ScrollTrigger.getById('horizontal-scroll')?.kill();
+        
+        // 2. 레이아웃 계산 완료 후 재생성
+        requestAnimationFrame(() => {
+          this.horizontalScrollEvent();
+          ScrollTrigger.refresh(); // 마지막에 전체 갱신
+        });
+      }, 150);
     });
   }
 
@@ -346,6 +354,10 @@ class App {
   horizontalScrollEvent () {
     const sectionPin = document.querySelector('.pin')
     if(!sectionPin) return;
+
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    this.lenis.scrollTo(currentScroll, { immediate: true });
+
     ScrollTrigger.getById('horizontal-scroll')?.kill(); 
     
     const menuBtn = document.querySelector('.menu__btn-toggle');
