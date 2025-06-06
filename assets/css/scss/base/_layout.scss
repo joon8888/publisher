@@ -1,4 +1,5 @@
 @use '../utils' as *;
+@use './font' as *;
 
 @keyframes draw {
   100% {
@@ -81,16 +82,16 @@ body {
     #text {
       height: auto;
       transform: translateX(50%);
-      font-family: $font-en;
+      font-family: $font-en-lato;
       font-weight: 900;
-      font-size: 7.2rem;
+      font-size: vw(72);
       stroke-width: 1;
       stroke-dasharray: 1000;
       stroke-dashoffset: 1100;
       animation: draw 110s cubic-bezier(0,1,0.2,1) forwards;
 
       @include mobile {
-        font-size: 3.6rem;
+        font-size: vw(36, $mobile); 
       }
     }
   }
@@ -143,47 +144,49 @@ body {
 .menu {
   &__btn-toggle {
     position: fixed;
-    top: 4rem;
-    right: 5rem;
+    top: vw(40);
+    right: vw(50);
     z-index: 1000;
     @include mobile {
-      top: 2rem;
-      right: 2rem;
+      top: vw(20,$mobile);
+      right: vw(20,$mobile);
     }
 
     span {
       display: block;
       position: relative;
-      width: 5rem;
-      height: 5rem;
+      width: vw(50);
+      height: vw(50);
       text-indent: -9999px;
       @include mobile {
-        width: 4rem;
-        height: 4rem;
+        width: vw(40, $mobile);
+        height: vw(40, $mobile);
       }
 
-      @include before (100%, 0.6rem) {
+      @include before (100%, vw(6)) {
         left: 50%;
-        top: calc(50% + 1rem);
+        top: calc(50% + vw(10));
         transform: translate(-50%, -50%);
         background: $color-black;
         will-change: transform, background;
         transition: transform 0.35s, background 0.35s;
         
         @include mobile {
-          top: calc(50% + 0.8rem);
+          height: vw(4, $mobile);
+          top: calc(50% + vw(8, $mobile));
         }
       }
 
-      @include after (100%, 0.6rem) {
+      @include after (100%, vw(6)) {
         left: 50%;
-        top: calc(50% - 1rem);
+        top: calc(50% - vw(10));
         transform: translate(-50%, -50%);
         background: $color-black;
         will-change: transform, background;
         transition: transform 0.35s, background 0.35s;
         @include mobile {
-          top: calc(50% - 0.8rem);
+          height: vw(4, $mobile);
+          top: calc(50% - vw(8));
         }
       }
     }
@@ -206,23 +209,28 @@ body {
       width: 100%;
       height: 100%;
       transition: all 0.35s 0.5s;
-      padding: 13rem 5rem 0 0;
+      padding: vw(130) vw(50) 0 0;
 
       @include mobile { 
-        padding-right: 2rem;
+        padding: vw(130, $mobile) vw(20, $mobile) 0 0;
       }
     }
 
-    @include flex($direction: column, $ai: end, $gap: 1rem);
-    text-align: right;
+    @include flex($direction: column, $ai: end, $gap: vw(10)) {
+      text-align: right;
+
+      @include mobile {
+        gap: vw(20, $mobile);
+      }
+    };
 
     &__anchor {
       display: inline-block;
       transition: padding 0.35s;
       &:hover {
-        padding-right: 5rem;
+        padding-right: vw(50);
         @include mobile {
-          paddin-right: 2rem;
+          paddin-right: vw(20, $mobile);
         }
 
         span {
@@ -232,15 +240,13 @@ body {
 
       span {
         display: inline-block;
-        color: $color-white;
-        font-weight: 900;
-        font-size: 13rem;
+        @include font-style ($fz: vw(200), $ff: $font-en, $fw: 700, $color: $color-white) {
+          @include mobile {
+            font-size: vw(80, $mobile);
+          }
+        };
         clip-path: inset(0% 0% 0% 100%);
         transition: clip-path 0.5s;
-
-        @include mobile {
-          font-size: 8rem;
-        }
       }
       &:nth-child(1) span {
         transition-delay: 0.65s;
@@ -328,14 +334,16 @@ body {
   &--visual {
     height: 180vh;
     @include mobile {
-      height: 160dvh;
+      height: 160vh;
     }
   }
   &__title {
     @include flex;
-    font-family: $font-en;
-    font-size: 10rem;
-    font-weight: 700;
+    @include font-style ($fz: vw(200), $ff: $font-en, $fw: 700) {
+      @include mobile {
+        font-size: vw(60, $mobile);
+      }
+    }
   }
 }
 
@@ -346,7 +354,7 @@ body {
   width: 100vw;
   height: 80vh;
   @include mobile {
-    height: 100dvh;
+    height: 100vh;
   }
 
   &-wrap {
@@ -405,17 +413,17 @@ body {
   &__conts {
     &__item {
       border-bottom: 0.1rem solid #1a1a1a;
-      color: #ccc;
-      font-family: $font-en;
-      font-size: max(8rem, calc(140 / 1920 * 100vw));
+      color: $color-gray-300;
+      font-family: $font-en-lato;
+      font-size: vw(140);
       font-weight: 500;
       height: 25vh;
       overflow: hidden;
       position: relative;
       width: 100vw;
       @include mobile {
-        height: 25dvh;
-        font-size: max(6rem, calc(100 / 750 * 100vw));
+        height: 25vh;
+        font-size: vw(60, $mobile);
       }
 
       
@@ -423,7 +431,7 @@ body {
         @include flex;
         height: 100%;
         overflow: hidden;
-        padding: 2rem 0;
+        padding: vw(20) 0;
         position: absolute;
         white-space: nowrap;
         will-change: transform;
@@ -444,12 +452,12 @@ body {
 
   &__align {
     font-family: $font-en;
-    font-size: clamp(4.5rem, calc(45 / 1920 * 100vw) ,9rem);
+    font-size: vw(45);
     font-weight: 700;
     line-height: 100%;
     margin: 0;
     width: 100%;
-    height: 200px;
+    height: vw(200);
     color: rgb(0, 0, 0, 0.2);
     background: linear-gradient(to right, $color-gray-900, $color-gray-900) no-repeat;
     -webkit-background-clip: text;
@@ -483,12 +491,12 @@ body {
 
 // works
 .pin {
-  @include flex;
+  @include flex ($gap: vw(100));
   height: 100vh;
-  padding: 18vh 12vw;
   
   &--vertical {
     flex-direction: column;
+    gap: 0;
   }
 
   &--active {
@@ -498,16 +506,17 @@ body {
   }
 
   &__item {
-    width: 32rem;
+    width: vw(600);
     max-width: 100vw;
     aspect-ratio: 1 / 1;
-    margin: 4rem;
+    @include mobile {
+      width: 100%;
+    }
 
     &--title {
-      padding: 0vw 6vw 0vw 6vw;
       width: auto;
-      max-width: auto;
       aspect-ratio: auto;
+      padding: 0 vw(200) 0 vw(100);
       will-change: color;
       transition: color 0.3s;
     }
@@ -519,25 +528,31 @@ body {
       .work-text {
         &__title {
           position: absolute;
-          top: -2.5rem;
+          top: vw(-38);
           left: 0rem;
           z-index: 1;
-          font: {
-            size: 2rem;
-            weight: 600;
-          }
-          color: #dfdfdf;
-          line-height: 100%;
+          @include font-style ($fz: vw(36), $fw:700, $color: $color-white, $lh: 100%);
         }
         &__type {
           position: absolute;
-          bottom: -2.5rem;
+          bottom: vw(-30);
           right: 0rem;
           z-index: 1;
-          font: {
-            size: 1.6rem;
-          } 
+          @include font-style ($fz: vw(26), $fw:400, $color: $color-white, $lh: 100%);
           color: $color-white;
+
+          > span:last-child {
+            padding-right: vw(20);
+            @include after (vw(6), 100%) {
+              right: 0;
+              top: vw(2);
+              background: $color-primary-purple;
+            }
+          }
+
+          &--rn span:last-child::after {
+            background: $color-primary-lime;
+          }
         }
         &__hidden {
           display: none;
@@ -582,29 +597,40 @@ body {
         transition: clip-path 0.6s $ease-out-sine, transform 0.3s ease;
       }
     }
-
-    &.zoom {
-      &-in {
-        transform: scale(0.9);
-        // filter: blur(2px) grayscale(100%);
-        filter: grayscale(100%);
-      }
-      &-out {
-        transform: scale(1.2);
+    @media (min-width: $breakpoint-mobile) {
+      &.zoom {
+        &-in {
+          transform: scale(0.9);
+          // filter: blur(2px) grayscale(100%);
+          filter: grayscale(100%);
+        }
+        &-out {
+          transform: scale(1.2);
+        }
       }
     }
+    // &.zoom {
+    //   &-in {
+    //     transform: scale(0.9);
+    //     // filter: blur(2px) grayscale(100%);
+    //     filter: grayscale(100%);
+    //   }
+    //   &-out {
+    //     transform: scale(1.2);
+    //   }
+    // }
 
     &--end {
       @include flex($jc: center);
-      width: 40rem;
-      height: 40rem;
+      width: vw(400);
+      height: vw(400);
       border-radius: 50%;
       background-color: $color-gray-900;
 
       &__text {
         font-family: $font-en;
         font-weight: 900;
-        font-size: 4rem;
+        font-size: vw(40);
         color: #efefef;
       }
     }
@@ -631,12 +657,16 @@ body {
     }
 
     img {
-      width: 600px;
-      max-width: 100%;
+      width: vw(1200);
+      max-width: 100vw;
       clip-path: inset(0% 0% 100% 0%);
       transition: clip-path 0.6s $ease-in-out, transform 0.6s ease;
       cursor: none;
       will-change: clip-path, transform;
+
+      @include mobile {
+        width: 100vw;
+      }
     }
   }
 
@@ -644,10 +674,18 @@ body {
   &__close {
     display: block;
     position: absolute;
-    top: -5rem;
-    right: -5rem;
-    width: 5rem;
-    height: 5rem;
+    top: vw(-70);
+    right: vw(-70);
+    width: vw(70);
+    height: vw(70);
+
+    @include mobile {
+      top: vw(-60, $mobile);
+      right: vw(10, $mobile);
+
+      width: vw(50, $mobile);
+      height: vw(50, $mobile);
+    }
     
     &__btn {
       display: block;
@@ -656,7 +694,7 @@ body {
       position: relative;
       text-indent: -9999px;
 
-      @include before (5rem, 0.2rem) {
+      @include before (vw(70), vw(2)) {
         top: 50%;
         right: 0;
         transform: rotate(-90deg);
@@ -664,9 +702,13 @@ body {
         opacity: 0;
         will-change: opacity, transform;
         transition: opacity 0.3s, transform 0.6s;
+        @include mobile {
+          width: vw(50, $mobile);
+          height: vw(2, $mobile);
+        }
       }
 
-      @include after (5rem, 0.2rem) {
+      @include after (vw(70), vw(2)) {
         top: 50%;
         right: 0;
         transform: rotate(-180deg);
@@ -674,6 +716,10 @@ body {
         opacity: 0;
         will-change: opacity, transform;
         transition: opacity 0.3s, transform 0.6s;
+        @include mobile {
+          width: vw(50, $mobile);
+          height: vw(2, $mobile);
+        }
       }
     }
   }
@@ -702,44 +748,44 @@ body {
     }
 
     &__title {
-      top: -4.5rem;
-      left: -10rem;
+      top: vw(-56);
+      left: vw(-100);
 
       span {
-        font-size: 5.4rem;
+        font-size: vw(72);
         font-weight: 600;
         font-style: italic;
       }
     }
 
     &__period {
-      top: -5.6rem;
-      left: -6rem;
+      top: vw(-80);
+      left: vw(-60);
       
       span {
-        font-size: 1.8rem;
-        font-weight: 500;
+        font-size: vw(32);
+        font-weight: 300;
         font-style: italic;
       }
     }
 
     &__category {
-      bottom: -3rem;
+      bottom: vw(-40);
       right: 0rem;
 
       span {
-        font-size: 2.2rem;
+        font-size: vw(32);
         font-weight: 500;
       }
     }
 
     &__detail {
       top: 100%;
-      left: -3.2rem;
+      left: vw(-32);
       
       span {
         font-weight: 300;
-        font-size: 1.2rem;
+        font-size: vw(24);
         line-height: 1.8;
       }
     }

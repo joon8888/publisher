@@ -47,19 +47,24 @@ $ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
 // font
 $font-kr: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Segoe UI', sans-serif;
-$font-en: 'lato', 'Segoe UI', sans-serif;
+$font-en: 'Roboto', 'Segoe UI', sans-serif;
+$font-en-lato: 'Lato', 'Segoe UI', sans-serif;
 
 // 반응형 미디어쿼리 해상도
 $breakpoint-mobile: 767px;
 $breakpoint-tablet: 1024px;
 $breakpoint-desktop: 1025px;
 
+$mobile: 'mobile';
+$tablet: 'tablet';
+
 // COLOR
 $color-primary-purple: #6600ff;
+$color-primary-lime: #ccff00;
 $color-white: #fff;
 $color-black: #000;
 $color-gray-100: #222;
-$color-gray-300: #222;
+$color-gray-300: #ccc;
 $color-gray-500: #222;
 $color-gray-700: #222;
 $color-gray-900: #222;

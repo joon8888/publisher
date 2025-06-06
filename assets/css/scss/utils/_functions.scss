@@ -20,3 +20,22 @@
     @return "all and (max-width: #{$breakpoint-mobile})"; // 767px 이하
   }
 }
+
+// 반응형 단위
+@function vw($px, $viewport: 'desktop') {
+  $rem: $px / 10;
+  $viewport-width: 1920;
+
+  @if $viewport == 'tablet' {
+    $viewport-width: 768;
+  } @else if $viewport == 'mobile' {
+    $viewport-width: 375;
+  }
+
+  $calculated-value: $rem / $viewport-width * 1000; 
+  $min-value: $rem * 1;
+  $max-value: $rem * 2;
+
+  // @return clamp(#{$min-value}rem, #{$calculated-value}vw, #{$max-value}rem);
+  @return #{$calculated-value}vw;
+}
