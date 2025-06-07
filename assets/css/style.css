@@ -194,6 +194,36 @@ html, body {
             transform: translateX(100%);
   }
 }
+@-webkit-keyframes scaleup {
+  0% {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+    opacity: 0;
+  }
+  80% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes scaleup {
+  0% {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+    opacity: 0;
+  }
+  80% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
 html {
   font-size: 62.5%;
 }
@@ -364,7 +394,7 @@ body {
   right: 2.6041666667vw;
   z-index: 1000;
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 1024px) {
   .menu__btn-toggle {
     top: 5.3333333333vw;
     right: 5.3333333333vw;
@@ -379,7 +409,7 @@ body {
   position: relative;
   position: relative;
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 1024px) {
   .menu__btn-toggle span {
     width: 10.6666666667vw;
     height: 10.6666666667vw;
@@ -402,7 +432,7 @@ body {
   transition: transform 0.35s, background 0.35s;
   transition: transform 0.35s, background 0.35s, -webkit-transform 0.35s;
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 1024px) {
   .menu__btn-toggle span::before {
     height: 1.0666666667vw;
     top: calc(50% + 2.1333333333vw);
@@ -425,7 +455,7 @@ body {
   transition: transform 0.35s, background 0.35s;
   transition: transform 0.35s, background 0.35s, -webkit-transform 0.35s;
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 1024px) {
   .menu__btn-toggle span::after {
     height: 1.0666666667vw;
     top: calc(50% - 0.4166666667vw);
@@ -464,7 +494,7 @@ body {
   transition: all 0.35s 0.5s;
   padding: 6.7708333333vw 2.6041666667vw 0 0;
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 1024px) {
   .menu__nav-wrap {
     padding: 34.6666666667vw 5.3333333333vw 0 0;
   }
@@ -619,7 +649,7 @@ body {
 .section--visual {
   height: 180vh;
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 1024px) {
   .section--visual {
     height: 160vh;
   }
@@ -892,7 +922,7 @@ body {
   max-width: 100vw;
   aspect-ratio: 1/1;
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 1024px) {
   .pin__item {
     width: 100%;
   }
@@ -905,10 +935,30 @@ body {
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
 }
+@media all and (max-width: 1024px) {
+  .pin__item--title {
+    padding: 80vw 0 13.3333333333vw;
+  }
+}
 .pin__item--work {
   position: relative;
   -webkit-transition: all 0.6s;
   transition: all 0.6s;
+}
+@media all and (max-width: 1024px) {
+  .pin__item--work {
+    -webkit-filter: grayscale(1) contrast(0.8) brightness(0.5);
+            filter: grayscale(1) contrast(0.8) brightness(0.5);
+    opacity: 0.7;
+  }
+}
+@media all and (max-width: 1024px) {
+  .pin__item--work .work-text {
+    position: absolute;
+    top: 5.3333333333vw;
+    left: 5.3333333333vw;
+    z-index: 1;
+  }
 }
 .pin__item--work .work-text__title {
   position: absolute;
@@ -920,8 +970,16 @@ body {
   font-style: normal;
   font-weight: 700;
   line-height: 100%;
-  letter-spacing: 0px;
+  letter-spacing: -0.0833333333vw;
   color: #fff;
+}
+@media all and (max-width: 1024px) {
+  .pin__item--work .work-text__title {
+    position: static;
+    color: #222;
+    font-size: 5.8666666667vw;
+    letter-spacing: -0.16vw;
+  }
 }
 .pin__item--work .work-text__type {
   position: absolute;
@@ -937,9 +995,41 @@ body {
   color: #fff;
   color: #fff;
 }
+@media all and (max-width: 1024px) {
+  .pin__item--work .work-text__type {
+    position: static;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    color: #fff;
+    font-size: 3.2vw;
+    font-weight: 500;
+    margin-top: 1.3333333333vw;
+    padding: 0.8vw 1.3333333333vw;
+    background: #6600ff;
+    -webkit-clip-path: inset(0% 0% 0% 0%);
+            clip-path: inset(0% 0% 0% 0%);
+    will-change: clip-path;
+    -webkit-transition: -webkit-clip-path 0.3s;
+    transition: -webkit-clip-path 0.3s;
+    transition: clip-path 0.3s;
+    transition: clip-path 0.3s, -webkit-clip-path 0.3s;
+  }
+}
 .pin__item--work .work-text__type > span:last-child {
   padding-right: 1.0416666667vw;
   position: relative;
+}
+@media all and (max-width: 1024px) {
+  .pin__item--work .work-text__type > span:last-child {
+    padding: 0;
+  }
 }
 .pin__item--work .work-text__type > span:last-child::after {
   display: block;
@@ -951,11 +1041,31 @@ body {
   top: 0.1041666667vw;
   background: #6600ff;
 }
+@media all and (max-width: 1024px) {
+  .pin__item--work .work-text__type > span:last-child::after {
+    display: none;
+  }
+}
+@media all and (max-width: 1024px) {
+  .pin__item--work .work-text__type--rn {
+    background: #ccff00;
+    color: #454545;
+    font-weight: 600;
+  }
+}
 .pin__item--work .work-text__type--rn span:last-child::after {
   background: #ccff00;
 }
 .pin__item--work .work-text__hidden {
   display: none;
+}
+@media all and (max-width: 1024px) {
+  .pin__item--work .work-text__hidden.work-text__period {
+    display: inline-block;
+    color: #222;
+    font-size: 3.7333333333vw;
+    margin: 2.6666666667vw 1.3333333333vw;
+  }
 }
 .pin__item--work .work-text span {
   display: inline-block;
@@ -968,6 +1078,49 @@ body {
   color: inherit;
   line-height: inherit;
 }
+@media all and (max-width: 1024px) {
+  .pin__item--work--active {
+    -webkit-filter: grayscale(0);
+            filter: grayscale(0);
+    opacity: 1;
+    position: relative;
+  }
+  .pin__item--work--active::after {
+    display: block;
+    position: absolute;
+    content: "CLICK";
+    width: 16vw;
+    height: 16vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    gap: 0;
+    right: 5.3333333333vw;
+    bottom: 5.3333333333vw;
+    border-radius: 50%;
+    background: #000;
+    opacity: 0.8;
+    font-family: "Lato", "Segoe UI", sans-serif;
+    font-size: 3.2vw;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0px;
+    color: #fff;
+    -webkit-animation: scaleup 1s linear both;
+            animation: scaleup 1s linear both;
+  }
+}
 .pin__item.hidden {
   pointer-events: none;
 }
@@ -979,6 +1132,15 @@ body {
 .pin__item.hidden .pin__item__image img {
   -webkit-clip-path: inset(0% 16.7% 100% 16.7%);
           clip-path: inset(0% 16.7% 100% 16.7%);
+}
+@media all and (max-width: 1024px) {
+  .pin__item.hidden .work-text__type {
+    -webkit-clip-path: inset(0% 0% 0% 100%);
+            clip-path: inset(0% 0% 0% 100%);
+  }
+  .pin__item.hidden::after {
+    display: none;
+  }
 }
 .pin__item__image {
   display: -webkit-box;
@@ -1010,12 +1172,13 @@ body {
   transition: clip-path 0.6s cubic-bezier(0.39, 0.575, 0.565, 1), transform 0.3s ease;
   transition: clip-path 0.6s cubic-bezier(0.39, 0.575, 0.565, 1), transform 0.3s ease, -webkit-clip-path 0.6s cubic-bezier(0.39, 0.575, 0.565, 1), -webkit-transform 0.3s ease;
 }
-@media (min-width: 767px) {
+@media (min-width: 1024px) {
   .pin__item.zoom-in {
     -webkit-transform: scale(0.9);
             transform: scale(0.9);
-    -webkit-filter: grayscale(100%);
-            filter: grayscale(100%);
+    -webkit-filter: grayscale(1) contrast(0.8) brightness(0.5);
+            filter: grayscale(1) contrast(0.8) brightness(0.5);
+    opacity: 0.7;
   }
   .pin__item.zoom-out {
     -webkit-transform: scale(1.2);

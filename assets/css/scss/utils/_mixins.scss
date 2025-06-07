@@ -57,26 +57,26 @@
 }
 
 // 가상요소 생성
-@mixin after($w, $h) {
+@mixin after($w, $h, $content: '') {
   position: relative;
 
   &::after {
     display: block;
     position: absolute;
-    content: '';
+    content: $content;
     width: $w;
     height: $h;
     @content;
   }
 }
 
-@mixin before($w, $h) {
+@mixin before($w, $h, $content: '') {
   position: relative;
 
   &::before {
     display: block;
     position: absolute;
-    content: '';
+    content: $content;
     width: $w;
     height: $h;
     @content;

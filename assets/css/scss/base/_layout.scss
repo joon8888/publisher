@@ -36,6 +36,19 @@
     transform: translateX(100%);
   }
 }
+@keyframes scaleup {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 
 html {
   font-size: 62.5%;
@@ -147,7 +160,7 @@ body {
     top: vw(40);
     right: vw(50);
     z-index: 1000;
-    @include mobile {
+    @include tablet {
       top: vw(20,$mobile);
       right: vw(20,$mobile);
     }
@@ -158,7 +171,7 @@ body {
       width: vw(50);
       height: vw(50);
       text-indent: -9999px;
-      @include mobile {
+      @include tablet {
         width: vw(40, $mobile);
         height: vw(40, $mobile);
       }
@@ -171,7 +184,7 @@ body {
         will-change: transform, background;
         transition: transform 0.35s, background 0.35s;
         
-        @include mobile {
+        @include tablet {
           height: vw(4, $mobile);
           top: calc(50% + vw(8, $mobile));
         }
@@ -184,7 +197,7 @@ body {
         background: $color-black;
         will-change: transform, background;
         transition: transform 0.35s, background 0.35s;
-        @include mobile {
+        @include tablet {
           height: vw(4, $mobile);
           top: calc(50% - vw(8));
         }
@@ -211,7 +224,7 @@ body {
       transition: all 0.35s 0.5s;
       padding: vw(130) vw(50) 0 0;
 
-      @include mobile { 
+      @include tablet { 
         padding: vw(130, $mobile) vw(20, $mobile) 0 0;
       }
     }
@@ -333,7 +346,7 @@ body {
 .section {
   &--visual {
     height: 180vh;
-    @include mobile {
+    @include tablet {
       height: 160vh;
     }
   }
@@ -509,7 +522,7 @@ body {
     width: vw(600);
     max-width: 100vw;
     aspect-ratio: 1 / 1;
-    @include mobile {
+    @include tablet {
       width: 100%;
     }
 
@@ -519,19 +532,40 @@ body {
       padding: 0 vw(200) 0 vw(100);
       will-change: color;
       transition: color 0.3s;
+
+      @include tablet {
+        padding: vw(300, $mobile) 0 vw(50, $mobile);
+      }
     }
 
     &--work {
       position: relative;
       transition: all 0.6s;
+      @include tablet {
+        filter: grayscale(1) contrast(0.8) brightness(0.5);
+        opacity: 0.7;
+      }
 
       .work-text {
+        @include tablet {
+          position: absolute;
+          top: vw(20, $mobile);
+          left: vw(20, $mobile);
+          z-index: 1;
+        }
         &__title {
           position: absolute;
           top: vw(-38);
           left: 0rem;
           z-index: 1;
-          @include font-style ($fz: vw(36), $fw:700, $color: $color-white, $lh: 100%);
+          @include font-style ($fz: vw(36), $fw:700, $color: $color-white, $lh: 100%, $ls: vw(-1.6));
+
+          @include tablet {
+            position: static;
+            color: $color-gray-900;
+            font-size: vw(22, $mobile);
+            letter-spacing: vw(-0.6, $mobile);
+          }
         }
         &__type {
           position: absolute;
@@ -541,21 +575,63 @@ body {
           @include font-style ($fz: vw(26), $fw:400, $color: $color-white, $lh: 100%);
           color: $color-white;
 
+          @include tablet {
+            position: static;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: $color-white;
+            font-size: vw(12, $mobile);
+            font-weight: 500;
+            margin-top: vw(5, $mobile);
+            padding: vw(3, $mobile) vw(5, $mobile);
+            background: $color-primary-purple;
+            clip-path: inset(0% 0% 0% 0%);
+            will-change: clip-path;
+            transition: clip-path 0.3s;
+          }
+
           > span:last-child {
             padding-right: vw(20);
+            @include tablet {
+              padding: 0;
+            }
+            
             @include after (vw(6), 100%) {
               right: 0;
               top: vw(2);
               background: $color-primary-purple;
+
+              @include tablet {
+                display: none;
+              }
             }
           }
 
-          &--rn span:last-child::after {
-            background: $color-primary-lime;
+          &--rn {
+            @include tablet {
+              background: $color-primary-lime;
+              color: $color-gray-700;
+              font-weight: 600;
+            }
+
+            span:last-child::after {
+              background: $color-primary-lime;
+            }
           }
+          
         }
         &__hidden {
           display: none;
+
+          &.work-text__period {
+            @include tablet {
+              display: inline-block;
+              color: $color-gray-900;
+              font-size: vw(14, $mobile);
+              margin: vw(10, $mobile) vw(5, $mobile);
+            }
+          }
         }
 
         span {
@@ -566,6 +642,22 @@ body {
           font-weight: inherit;
           color: inherit;
           line-height: inherit;
+        }
+      }
+      &--active {
+        @include tablet {
+          filter: grayscale(0);
+          opacity: 1;
+          @include after(vw(60, $mobile), vw(60, $mobile), 'CLICK') {
+            @include flex($jc: center);
+            right: vw(20, $mobile);
+            bottom: vw(20, $mobile);
+            border-radius: 50%;
+            background: $color-black;
+            opacity: 0.8;
+            @include font-style($fz: vw(12, $mobile), $ff: $font-en-lato, $fw: 600, $color: $color-white);
+            animation: scaleup 1s linear both;
+          }
         }
       }
     }
@@ -580,6 +672,15 @@ body {
 
       .pin__item__image img {
         clip-path: inset(0% 16.7% 100% 16.7%);
+      }
+
+      @include tablet {
+        .work-text__type {
+          clip-path: inset(0% 0% 0% 100%);
+        }
+        &::after {
+          display: none;
+        }
       }
     }
     
@@ -597,28 +698,18 @@ body {
         transition: clip-path 0.6s $ease-out-sine, transform 0.3s ease;
       }
     }
-    @media (min-width: $breakpoint-mobile) {
+    @media (min-width: $breakpoint-tablet) {
       &.zoom {
         &-in {
           transform: scale(0.9);
-          // filter: blur(2px) grayscale(100%);
-          filter: grayscale(100%);
+          filter: grayscale(1) contrast(0.8) brightness(0.5);
+          opacity: 0.7;
         }
         &-out {
           transform: scale(1.2);
         }
       }
     }
-    // &.zoom {
-    //   &-in {
-    //     transform: scale(0.9);
-    //     // filter: blur(2px) grayscale(100%);
-    //     filter: grayscale(100%);
-    //   }
-    //   &-out {
-    //     transform: scale(1.2);
-    //   }
-    // }
 
     &--end {
       @include flex($jc: center);

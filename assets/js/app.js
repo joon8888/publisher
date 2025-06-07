@@ -385,6 +385,18 @@ class App {
           sectionPin.classList.remove('pin--active');
         }
       });
+
+      const workItems = document.querySelectorAll('.pin__item--work');
+      workItems.forEach(item => {
+        ScrollTrigger.create({
+          trigger: item,
+          scroller: document.body,
+          start: 'top 50%',
+          end: 'bottom 50%',
+          toggleClass: { targets: item, className: 'pin__item--work--active' },
+          // markers: true,
+        });
+      });
   
       return;
     }
