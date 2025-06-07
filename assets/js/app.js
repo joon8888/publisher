@@ -448,11 +448,12 @@ class App {
   }
 
   workViewSectionHandler () {
+    const menuBtn = document.querySelector('.menu__btn-toggle');
     const workSection = document.querySelector('.section--works');
     const pinItemWorks = document.querySelectorAll('.pin__item--work');
+    const otherPinItems = document.querySelectorAll('.pin__item:not(.pin__item--work');
     const workView = document.querySelector('.work-view');
     const closeWorkViewBtn = workView.querySelector('.work-view__close');
-
 
     pinItemWorks.forEach(item => {
       const targets = item.querySelectorAll('.work-text > p, .work-text li');
@@ -507,6 +508,8 @@ class App {
         setTimeout(() => {
           workView.classList.add('active');
         }, 350);
+        otherPinItems.forEach(item => item.style.visibility = 'hidden');
+        menuBtn.style.display = 'none';
       });
     });
 
@@ -517,6 +520,8 @@ class App {
         workView.closest('.work-view-wrap').classList.remove('active');
       }, 1000);
       workView.classList.remove('active');
+      otherPinItems.forEach(item => item.style.visibility = 'visible');
+      menuBtn.style.display = 'block';
     });
 
     const pinItemImages = workSection.querySelectorAll('.pin__item__image');
