@@ -350,6 +350,11 @@ body {
       height: 160vh;
     }
   }
+  &--works {
+    @include tablet {
+      padding-top: vw(100, $mobile);
+    }
+  }
   &__title {
     @include flex;
     @include font-style ($fz: vw(200), $ff: $font-en, $fw: 700) {
@@ -506,6 +511,9 @@ body {
 .pin {
   @include flex ($gap: vw(100));
   height: 100vh;
+  @include tablet {
+    height: auto;
+  }
   
   &--vertical {
     flex-direction: column;
@@ -534,7 +542,7 @@ body {
       transition: color 0.3s;
 
       @include tablet {
-        padding: vw(300, $mobile) 0 vw(50, $mobile);
+        padding: 0 0 vw(20, $mobile);
       }
     }
 
@@ -648,7 +656,7 @@ body {
         @include tablet {
           filter: grayscale(0);
           opacity: 1;
-          @include after(vw(60, $mobile), vw(60, $mobile), 'CLICK') {
+          @include after(vw(60, $mobile), vw(60, $mobile), 'More') {
             @include flex($jc: center);
             right: vw(20, $mobile);
             bottom: vw(20, $mobile);

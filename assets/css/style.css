@@ -654,6 +654,11 @@ body {
     height: 160vh;
   }
 }
+@media all and (max-width: 1024px) {
+  .section--works {
+    padding-top: 26.6666666667vw;
+  }
+}
 .section__title {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -907,6 +912,11 @@ body {
   gap: 5.2083333333vw;
   height: 100vh;
 }
+@media all and (max-width: 1024px) {
+  .pin {
+    height: auto;
+  }
+}
 .pin--vertical {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -937,7 +947,7 @@ body {
 }
 @media all and (max-width: 1024px) {
   .pin__item--title {
-    padding: 80vw 0 13.3333333333vw;
+    padding: 0 0 5.3333333333vw;
   }
 }
 .pin__item--work {
@@ -1088,7 +1098,7 @@ body {
   .pin__item--work--active::after {
     display: block;
     position: absolute;
-    content: "CLICK";
+    content: "More";
     width: 16vw;
     height: 16vw;
     display: -webkit-box;
