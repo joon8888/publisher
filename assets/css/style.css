@@ -242,6 +242,7 @@ body {
   pointer-events: none;
 }
 .intro .text-wrap {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -257,26 +258,12 @@ body {
           justify-content: center;
   gap: 0;
   background: #fff;
-  width: inherit;
-  height: inherit;
+  width: 100%;
+  height: 100%;
   -webkit-animation: fadeOut 1s 2.5s forwards;
           animation: fadeOut 1s 2.5s forwards;
 }
 .intro .text-wrap svg {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 0;
   position: absolute;
   top: 50%;
   left: 50%;
