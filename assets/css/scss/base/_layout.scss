@@ -1,6 +1,7 @@
 @use '../utils' as *;
 @use './font' as *;
 
+/* keyframe animaiton */
 @keyframes draw {
   100% {
     stroke-dashoffset: 0;
@@ -58,20 +59,13 @@ body {
   background: $color-white;
 }
 
-.icon {
-  display: inline-block;
-  &--arrow-right {
-    width: 10rem;
-    height: 10rem;
-    background: url('./../image/ico_arrow_right.svg') no-repeat center / 100%;
-  }
-}
+/* contents */
 
 .intro {
   position: fixed;
   inset: 0;
   z-index: 10001;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   pointer-events: none;
 
@@ -224,7 +218,10 @@ body {
       transition: all 0.35s 0.5s;
       padding: vw(130) vw(50) 0 0;
 
-      @include tablet { 
+      @include tablet {
+        padding: vw(130, $tablet) vw(20,$mobile) 0 0;
+      }
+      @include mobile { 
         padding: vw(130, $mobile) vw(20, $mobile) 0 0;
       }
     }
@@ -525,6 +522,13 @@ body {
       color: $color-white;
     }
   }
+  &:not(.pin--active) {
+    .pin__item--work:not(.pin__item--work--active) {
+      @include tablet {
+        pointer-events: none;
+      }
+    }
+  }
 
   &__item {
     width: vw(600);
@@ -668,6 +672,11 @@ body {
           }
         }
       }
+      // &:not(.pin__item--work--active) {
+      //   @include tablet {
+      //     pointer-events: none;
+      //   }
+      // }
     }
 
     &.hidden {
@@ -680,6 +689,10 @@ body {
 
       .pin__item__image img {
         clip-path: inset(0% 16.7% 100% 16.7%);
+
+        @include tablet {
+          clip-path: inset(0% 100% 0% 16.7%);
+        }
       }
 
       @include tablet {
@@ -849,43 +862,75 @@ body {
     &__title {
       top: vw(-56);
       left: vw(-100);
+      @include mobile {
+        top: vw(-20, $mobile);
+        left: vw(10, $mobile);
+      }
 
       span {
         font-size: vw(72);
         font-weight: 600;
         font-style: italic;
+
+        @include mobile {
+          font-size: vw(24, $mobile);
+        }
       }
     }
 
     &__period {
       top: vw(-80);
       left: vw(-60);
+      @include mobile {
+        left: vw(10, $mobile);
+        top: vw(-34, $mobile);
+      }
       
       span {
         font-size: vw(32);
         font-weight: 300;
         font-style: italic;
+
+        @include mobile {
+          font-size: vw(14, $mobile);
+        }
       }
     }
 
     &__category {
       bottom: vw(-40);
       right: 0rem;
+      @include mobile {
+        right: vw(20, $mobile);
+        bottom: vw(-20, $mobile);
+      }
 
       span {
         font-size: vw(32);
         font-weight: 500;
+
+        @include mobile {
+          font-size: vw(14, $mobile);
+        }
       }
     }
 
     &__detail {
       top: 100%;
       left: vw(-32);
+      @include mobile {
+        left: vw(10, $mobile);
+      }
       
       span {
         font-weight: 300;
         font-size: vw(24);
         line-height: 1.8;
+
+        @include mobile {
+          font-size: vw(12, $mobile);
+          line-height: 1.6;
+        }
       }
     }
   }
