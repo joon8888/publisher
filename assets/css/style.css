@@ -645,12 +645,7 @@ body {
 }
 
 .section--visual {
-  height: 180vh;
-}
-@media all and (max-width: 1024px) {
-  .section--visual {
-    height: 160vh;
-  }
+  height: 140vh;
 }
 @media all and (max-width: 1024px) {
   .section--works {
@@ -672,6 +667,7 @@ body {
       -ms-flex-pack: start;
           justify-content: flex-start;
   gap: 0;
+  padding: 5.2083333333vw 0 0 5.2083333333vw;
   font-family: "Roboto", "Segoe UI", sans-serif;
   font-size: 10.4166666667vw;
   font-style: normal;
@@ -767,7 +763,7 @@ body {
   height: 100%;
 }
 .fold__conts__item {
-  border-bottom: 0.1rem solid #1a1a1a;
+  border-bottom: 0.1rem solid #777;
   color: #ccc;
   font-family: "Lato", "Segoe UI", sans-serif;
   font-size: 7.2916666667vw;
@@ -806,7 +802,7 @@ body {
   will-change: transform;
 }
 .fold__conts__item .focus {
-  color: #1a1a1a;
+  color: #222;
   font-weight: 700;
 }
 
@@ -825,16 +821,15 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   gap: 0;
-  min-height: 100vh;
 }
 .text-scroll__align {
   font-family: "Roboto", "Segoe UI", sans-serif;
-  font-size: 2.34375vw;
+  font-size: 7.2916666667vw;
   font-weight: 700;
   line-height: 100%;
-  margin: 0;
+  padding: 0 5.2083333333vw;
   width: 100%;
-  height: 10.4166666667vw;
+  height: 20vh;
   color: rgba(0, 0, 0, 0.2);
   background: -webkit-gradient(linear, left top, right top, from(#222), to(#222)) no-repeat;
   background: linear-gradient(to right, #222, #222) no-repeat;
@@ -843,7 +838,7 @@ body {
   background-size: 0%;
   -webkit-transition: background-size cubic-bezier(0.1, 0.5, 0.5, 1) 0.5s;
   transition: background-size cubic-bezier(0.1, 0.5, 0.5, 1) 0.5s;
-  border-bottom: 1px solid #2F2B28;
+  border-bottom: 1px solid #777;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -860,6 +855,12 @@ body {
   gap: 0;
   position: relative;
 }
+@media all and (max-width: 767px) {
+  .text-scroll__align {
+    height: 18vh;
+    font-size: 8vw;
+  }
+}
 .text-scroll__align:hover > .text-scroll__align__hover {
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
           clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
@@ -869,6 +870,8 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
+  padding-left: 5.2083333333vw;
+  margin-left: -5.2083333333vw;
   background-color: #6600ff;
   color: #fff;
   -webkit-clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
@@ -943,7 +946,7 @@ body {
 .pin__item--title {
   width: auto;
   aspect-ratio: auto;
-  padding: 0 10.4166666667vw 0 5.2083333333vw;
+  padding-right: 10.4166666667vw;
   will-change: color;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
@@ -967,9 +970,12 @@ body {
 }
 @media all and (max-width: 1024px) {
   .pin__item--work .work-text {
+    width: 100%;
+    height: 100%;
     position: absolute;
-    top: 5.3333333333vw;
-    left: 5.3333333333vw;
+    left: 0;
+    top: 0;
+    padding: 5.3333333333vw;
     z-index: 1;
   }
 }
@@ -978,7 +984,7 @@ body {
   top: -1.9791666667vw;
   left: 0rem;
   z-index: 1;
-  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+  font-family: "Roboto", "Segoe UI", sans-serif;
   font-size: 1.875vw;
   font-style: normal;
   font-weight: 700;
@@ -1069,6 +1075,63 @@ body {
 .pin__item--work .work-text__type--rn span:last-child::after {
   background: #ccff00;
 }
+.pin__item--work .work-text__tag {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 0;
+  position: absolute;
+  top: 1.0416666667vw;
+  right: 1.0416666667vw;
+  z-index: 1;
+}
+@media all and (max-width: 1024px) {
+  .pin__item--work .work-text__tag {
+    top: 5.3333333333vw;
+    right: 5.3333333333vw;
+  }
+}
+.pin__item--work .work-text__tag li {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  width: 5.2083333333vw;
+  height: 5.2083333333vw;
+  border-radius: 50%;
+  background: red;
+  opacity: 0.75;
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+  font-size: 0.8333333333vw;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0px;
+  color: #fff;
+}
+@media all and (max-width: 1024px) {
+  .pin__item--work .work-text__tag li {
+    width: 16vw;
+    height: 16vw;
+    font-size: 3.2vw;
+  }
+}
 .pin__item--work .work-text__hidden {
   display: none;
 }
@@ -1136,6 +1199,9 @@ body {
 }
 .pin__item.hidden {
   pointer-events: none;
+}
+.pin__item.hidden .work-text__tag {
+  display: none;
 }
 .pin__item.hidden span {
   display: inline-block;
@@ -1219,16 +1285,25 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   gap: 0;
-  width: 20.8333333333vw;
-  height: 20.8333333333vw;
-  border-radius: 50%;
-  background-color: #222;
+  width: 31.25vw;
+  height: 31.25vw;
+}
+@media all and (max-width: 1024px) {
+  .pin__item--end {
+    width: auto;
+    height: auto;
+  }
 }
 .pin__item--end__text {
   font-family: "Roboto", "Segoe UI", sans-serif;
   font-weight: 900;
-  font-size: 2.0833333333vw;
+  font-size: 5.2083333333vw;
   color: #efefef;
+}
+@media all and (max-width: 1024px) {
+  .pin__item--end__text {
+    font-size: 10.6666666667vw;
+  }
 }
 
 .work-view {
@@ -1422,6 +1497,66 @@ body {
     font-size: 3.7333333333vw;
   }
 }
+.work-view__info__tag {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 0;
+  position: absolute;
+  top: 1.0416666667vw;
+  right: 1.0416666667vw;
+  z-index: 1;
+  opacity: 0;
+}
+@media all and (max-width: 1024px) {
+  .work-view__info__tag {
+    top: 2.6666666667vw;
+    right: 2.6666666667vw;
+  }
+}
+.work-view__info__tag li {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  width: 7.2916666667vw;
+  height: 7.2916666667vw;
+  border-radius: 50%;
+  background: red;
+  opacity: 0.75;
+  -webkit-filter: invert(1);
+          filter: invert(1);
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+  font-size: 1.1458333333vw;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0px;
+  color: #fff;
+}
+@media all and (max-width: 1024px) {
+  .work-view__info__tag li {
+    width: 13.3333333333vw;
+    height: 13.3333333333vw;
+    font-size: 2.6666666667vw;
+  }
+}
 .work-view__info__detail {
   top: 100%;
   left: -1.6666666667vw;
@@ -1455,6 +1590,12 @@ body {
 .work-view.active .work-view__info span {
   -webkit-clip-path: inset(0% -100% 0% 0%);
           clip-path: inset(0% -100% 0% 0%);
+}
+.work-view.active .work-view__info__tag {
+  opacity: 1;
+  will-change: opacity;
+  -webkit-transition: opacity 0.5s 0.3s;
+  transition: opacity 0.5s 0.3s;
 }
 .work-view.active img {
   -webkit-clip-path: inset(0%);

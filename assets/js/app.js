@@ -456,7 +456,7 @@ class App {
     const closeWorkViewBtn = workView.querySelector('.work-view__close');
 
     pinItemWorks.forEach(item => {
-      const targets = item.querySelectorAll('.work-text > p, .work-text li');
+      const targets = item.querySelectorAll('.work-text > p, .work-text ul:not(.work-text__tag) li');
       targets.forEach(el => {
         const text = el.textContent;
         this.setSpanText(el, text);
@@ -467,6 +467,8 @@ class App {
         const title = item.querySelector('.work-text__title')?.textContent.trim() || '';
         const type = item.querySelector('.work-text__type')?.textContent.trim() || '';
         const period = item.querySelector('.work-text__period')?.textContent.trim() || '';
+        const tagListItems = item.querySelectorAll('.work-text__tag li');
+        const tagTexts = Array.from(tagListItems).map(li => li.innerHTML);
         const detailListItems = item.querySelectorAll('.work-text__detail li');
         const detailTexts = Array.from(detailListItems).map(li => li.textContent.trim());
 
@@ -479,7 +481,14 @@ class App {
         this.setSpanText(workView.querySelector('.work-view__info__category'), type);
         this.setSpanText(workView.querySelector('.work-view__info__period'), period);
 
-        // 상세 리스트 처리
+        const tagContainer = workView.querySelector('.work-view__info__tag ul');
+        tagContainer.innerHTML = ''; 
+        tagTexts.forEach(text => {
+          const li = document.createElement('li');
+          li.innerHTML = text;
+          tagContainer.appendChild(li);
+        });
+
         const detailContainer = workView.querySelector('.work-view__info__detail ul');
         detailContainer.innerHTML = ''; 
         detailTexts.forEach(text => {
